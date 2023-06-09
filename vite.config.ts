@@ -20,9 +20,9 @@ export default defineConfig({
 
             includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
             manifest: {
-                name: 'Vite PWA Template',
-                short_name: 'Vite PWA',
-                description: 'Vite + React + TypeScript + Tailwind PWA Template',
+                name: 'OnLab-Clinical',
+                short_name: 'OnLab-Clinical',
+                description: 'OnLab-Clinical WEB Application',
                 theme_color: '#ffffff',
                 background_color: '#ffffff',
                 display: 'standalone',

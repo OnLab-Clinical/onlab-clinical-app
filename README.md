@@ -1,1 +1,1 @@
-# Vite PWA Template
+# OnLab-Clinical WEB Application

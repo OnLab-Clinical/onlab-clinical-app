@@ -3,6 +3,10 @@ import { Slot } from '@/shared/types';
 
 export type Language = 'en' | 'es';
 
+export type LanguageMap = {
+    [index: string | Language]: string;
+};
+
 export interface LanguageProviderProps {
     children?: Slot;
 }

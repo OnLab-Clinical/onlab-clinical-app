@@ -1,7 +1,7 @@
 // react
 import { memo } from 'react';
 // props
-import { IconProps } from '.';
+import { IconProps } from './Icon.props';
 
 const Icon = memo(({ path }: IconProps) => {
     return (

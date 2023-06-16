@@ -14,7 +14,7 @@ export default plugin(function ({ addVariant, addBase }) {
     addBase({
         '*': {
             scrollbarColor: 'theme(colors.primary.600/100%) transparent',
-            scrollbarGutter: 'stable',
+            // scrollbarGutter: 'stable',
         },
         '::-webkit-scrollbar': {
             background: 'transparent',

@@ -36,7 +36,7 @@ const LanguageProvider = memo(({ children }: LanguageProviderProps) => {
                 <html lang={i18n.language} />
             </Helmet>
 
-            {content(children)}
+            {content(children, undefined)}
         </HelmetProvider>
     );
 });

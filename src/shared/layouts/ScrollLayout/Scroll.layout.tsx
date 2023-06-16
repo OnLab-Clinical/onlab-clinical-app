@@ -40,7 +40,7 @@ const ScrollLayout = memo(
                         styles[direction].scroll,
                         classNameContent
                     )}>
-                    {content(children)}
+                    {content(children, undefined)}
                 </div>
             </div>
         );

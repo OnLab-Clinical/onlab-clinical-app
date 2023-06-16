@@ -9,4 +9,8 @@
     .theme-dark {
         @apply bg-dark-700 text-light-300;
     }
+
+    .input {
+        @apply w-0 h-full flex-grow bg-transparent;
+    }
 }

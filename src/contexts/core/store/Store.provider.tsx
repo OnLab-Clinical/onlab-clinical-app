@@ -9,7 +9,7 @@ import { StoreProviderProps } from './store.type';
 import { content } from '@/shared/utils';
 
 const StoreProvider = memo(({ children }: StoreProviderProps) => {
-    return <Provider store={store}>{content(children)}</Provider>;
+    return <Provider store={store}>{content(children, undefined)}</Provider>;
 });
 
 export default StoreProvider;

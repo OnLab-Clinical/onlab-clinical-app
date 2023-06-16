@@ -44,7 +44,11 @@ const InputField = memo(
                             'transition-all rounded-sm border-b-2',
                             'border-opacity-80 group-focus-within:border-opacity-100 text-opacity-80 focus-within:text-opacity-100',
                             'theme-dark:border-opacity-80 theme-dark:group-focus-within:border-opacity-100 theme-dark:text-opacity-80 theme-dark:group-focus-within:text-opacity-100',
-                            hasError ? contentStyles.danger : contentStyles[styleStrategy]
+                            hasError
+                                ? contentStyles.danger
+                                : contentStyles[
+                                      contentString(styleStrategy, { hasError }) as StyleStrategy
+                                  ]
                         ),
                 }}
                 hasError={hasError}

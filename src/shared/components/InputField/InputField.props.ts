@@ -10,5 +10,5 @@ export interface InputFieldProps {
     hint?: string | ((props: FieldSlotProps) => string) | false;
     isHintReserved?: boolean;
     hasError?: boolean;
-    styleStrategy?: StyleStrategy;
+    styleStrategy?: StyleStrategy | ((props: FieldSlotProps) => StyleStrategy);
 }

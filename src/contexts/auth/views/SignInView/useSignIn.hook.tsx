@@ -13,7 +13,12 @@ import { useNotification } from '@/contexts/core/notification';
 import * as yup from 'yup';
 
 const signInSchema = yup.object({
-    name: yup.string().required('' as Translation),
+    name: yup
+        .string()
+        .required('' as Translation)
+        .matches(/^[A-Za-z]+.*$/, 'start with letter' as Translation)
+        .matches(/^\w+$/, 'only letters and decimals' as Translation)
+        .matches(/^.{3,32}$/, '3 a 32' as Translation),
     password: yup
         .string()
         .required('' as Translation)

@@ -58,7 +58,10 @@ export const useSignInForm = () => {
                 />
             ),
             after: (
-                <button type="button" onClick={togglePasswordVisibility}>
+                <button
+                    type="button"
+                    className="hover:scale-105 active:scale-95"
+                    onClick={togglePasswordVisibility}>
                     <Icon className="w-6 h-6" path={isPasswordVisible ? mdiEyeOff : mdiEye} />
                 </button>
             ),

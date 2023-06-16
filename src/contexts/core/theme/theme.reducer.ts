@@ -10,7 +10,7 @@ interface ThemeState {
 }
 
 const initialThemeState: ThemeState = {
-    theme: 'os',
+    theme: '' as ThemePreference,
 };
 
 const themeSlice = createSlice({

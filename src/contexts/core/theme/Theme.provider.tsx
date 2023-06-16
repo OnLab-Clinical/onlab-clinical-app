@@ -3,7 +3,7 @@
 import { memo, useEffect, useMemo, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 // types
-import { ThemeProviderProps } from './theme.type';
+import { ThemePreference, ThemeProviderProps } from './theme.type';
 // utils
 import { content } from '@/shared/utils';
 // hooks
@@ -15,14 +15,16 @@ const ThemeProvider = memo(({ children }: ThemeProviderProps) => {
     const themeClassName = useMemo((): string => {
         let currentTheme = theme;
 
-        if (theme === 'os') {
+        if (currentTheme === ('' as ThemePreference)) return '';
+
+        if (currentTheme === 'os') {
             if (window && window.matchMedia('(prefers-color-scheme: dark)').matches)
                 currentTheme = 'dark';
             else currentTheme = 'light';
         }
 
-        if (currentTheme === 'light') return 'theme-light';
-        return 'theme-dark';
+        if (currentTheme === 'dark') return 'theme-dark';
+        return 'theme-light';
     }, [theme]);
 
     const once = useRef<boolean>(false);
@@ -43,7 +45,7 @@ const ThemeProvider = memo(({ children }: ThemeProviderProps) => {
                 <html className={themeClassName} />
             </Helmet>
 
-            {content(children)}
+            {content(children, undefined)}
         </>
     );
 });

@@ -3,7 +3,7 @@
 import { memo, useEffect, useMemo, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 // types
-import { ThemePreference, ThemeProviderProps } from './theme.type';
+import { ThemeProviderProps } from './theme.type';
 // utils
 import { content } from '@/shared/utils';
 // hooks
@@ -14,8 +14,6 @@ const ThemeProvider = memo(({ children }: ThemeProviderProps) => {
 
     const themeClassName = useMemo((): string => {
         let currentTheme = theme;
-
-        if (currentTheme === ('' as ThemePreference)) return '';
 
         if (currentTheme === 'os') {
             if (window && window.matchMedia('(prefers-color-scheme: dark)').matches)

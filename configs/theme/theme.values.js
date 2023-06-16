@@ -1,33 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 
-import { amber, lime, red, sky } from 'tailwindcss/colors';
+import { blue, cyan, green, red, teal, yellow } from 'tailwindcss/colors';
 
 export default {
     colors: {
-        primary: {
-            50: '#b8d9f1',
-            100: '#8dc2e8',
-            200: '#7ebbe6',
-            300: '#70b3e3',
-            400: '#53a4dd',
-            500: '#3895d8',
-            600: '#2681c1',
-            700: '#206ba1',
-            800: '#1d6191',
-            900: '#195681',
-        },
-        secondary: {
-            50: '#fdcbb7',
-            100: '#fca380',
-            200: '#fa7c4a',
-            300: '#fa6f38',
-            400: '#fa5514',
-            500: '#fa5514',
-            600: '#f54a06',
-            700: '#e24406',
-            800: '#d13f05',
-            900: '#bf3a05',
-        },
+        primary: blue,
+        secondary: teal,
         dark: {
             50: '#eeeeee',
             100: '#cdcdcd',
@@ -52,9 +30,9 @@ export default {
             800: '#666666',
             900: '#4c4c4c',
         },
-        info: sky,
-        success: lime,
-        warning: amber,
+        info: cyan,
+        success: green,
+        warning: yellow,
         danger: red,
     },
     screens: {

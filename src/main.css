@@ -2,15 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    input {
+        @apply w-0 h-full flex-grow bg-transparent px-1 py-0.5 text-dark-700 theme-dark:text-light-300;
+    }
+    input[type='password'] {
+        letter-spacing: 0.125em;
+    }
+    input[type='password']::placeholder {
+        letter-spacing: 0;
+    }
+    input,
+    button {
+        @apply outline-none;
+    }
+}
+
 @layer components {
     .theme-light {
         @apply bg-light-300 text-dark-700;
     }
     .theme-dark {
         @apply bg-dark-700 text-light-300;
-    }
-
-    .input {
-        @apply w-0 h-full flex-grow bg-transparent;
     }
 }

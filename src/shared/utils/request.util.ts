@@ -10,7 +10,7 @@ interface RequestHeaders {
     [x: string]: string | number | boolean;
 }
 
-interface RequestProps<RequestBody, RequestParams, RequestResponse, RequestError> {
+interface RequestProps<RequestBody, RequestParams, RequestResponse> {
     // request to
     instance: AxiosInstance;
     method?: RequestMethod;
@@ -28,19 +28,14 @@ interface RequestProps<RequestBody, RequestParams, RequestResponse, RequestError
         data: any,
         headers: AxiosResponseHeaders,
         status?: number
-    ) => Promise<DomainResponse<RequestResponse, RequestError>>;
-    errorSerializer: (error: AxiosError) => Promise<DomainResponse<RequestResponse, RequestError>>;
+    ) => Promise<DomainResponse<RequestResponse>>;
+    errorSerializer: (error: AxiosError) => Promise<DomainResponse<RequestResponse>>;
     // configuration
     abort?: AbortController;
     timeout?: number;
 }
 
-export const request = async <
-    RequestResponse,
-    RequestError = null,
-    RequestBody = null,
-    RequestParams = null
->({
+export const request = async <RequestResponse, RequestBody = null, RequestParams = null>({
     // request to
     instance,
     method = 'GET',
@@ -58,8 +53,8 @@ export const request = async <
     // configuration
     abort,
     timeout = 5 * 1000,
-}: RequestProps<RequestBody, RequestParams, RequestResponse, RequestError>): Promise<
-    DomainResponse<RequestResponse, RequestError>
+}: RequestProps<RequestBody, RequestParams, RequestResponse>): Promise<
+    DomainResponse<RequestResponse>
 > => {
     try {
         const requestHeaders = {

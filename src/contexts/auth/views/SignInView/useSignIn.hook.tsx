@@ -11,6 +11,7 @@ import { useLoader } from '@/contexts/core/loader';
 import { useNotification } from '@/contexts/core/notification';
 // utils
 import * as yup from 'yup';
+import { signInRepository } from '../../repositories';
 
 const signInSchema = yup.object({
     name: yup
@@ -44,16 +45,20 @@ export const useSignIn = () => {
     const handleSignIn = form.handleSubmit(async data => {
         showLoader();
 
-        setTimeout(() => {
-            hideLoader();
+        const response = await signInRepository(data);
+
+        if (!response.success) {
             addNotification({
-                title: 'Test timeout',
-                message: 'Notification after timeout',
-                kind: 'success',
-                time: Date.now(),
+                message: response.message,
+                kind: response.kind,
             });
-            console.log(data);
-        }, 3000);
+
+            return hideLoader();
+        }
+
+        console.log(response.data);
+
+        hideLoader();
     });
 
     // sign in Contex

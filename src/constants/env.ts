@@ -1,3 +1,3 @@
 export const Env = {
-    POKE_API: 'https://pokeapi.co/api/v2',
+    ONLAB_CLINICAL_API: 'http://localhost:8080/api',
 };

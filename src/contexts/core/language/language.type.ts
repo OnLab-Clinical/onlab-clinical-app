@@ -15,4 +15,26 @@ export interface LanguageSwitcherProps {
     className?: string;
 }
 
-export type Translation = `actions.${'close' | 'reload'}` | `theme.${'os' | 'light' | 'dark'}`;
+export type Translation =
+    // app
+    | `app.${'title'}`
+    | `theme.${'os' | 'light' | 'dark'}`
+    | `actions.${'close' | 'reload'}`
+    // authentication module
+    | `auth.${
+          | `name.${'label' | 'placeholder' | 'required' | 'start' | 'only' | 'min'}`
+          | `password.${
+                | 'label'
+                | 'placeholder'
+                | 'show'
+                | 'hide'
+                | 'required'
+                | 'lowercase'
+                | 'uppercase'
+                | 'decimal'
+                | 'special'
+                | 'between'}`
+          // Sign in view
+          | `sign-in.${'title' | 'sign-in' | 'sign-up-hint' | 'sign-up-nav'}`
+          // sign up view
+          | `sign-up.${'title' | 'sign-up'}`}`;

@@ -7,16 +7,16 @@ import { useSignInForm } from './useSignInForm.hook';
 import { Button, InputField } from '@/shared/components';
 
 const SignInForm = memo(() => {
-    const { handleSignIn, signInFormFields } = useSignInForm();
+    const { handleSignIn, signInFormFields, signInAction, translate } = useSignInForm();
 
     return (
         <form
             className="flex flex-col p-4 gap-4 w-full max-w-sm rounded-sm shadow-md shadow-light-500 theme-dark:shadow-dark-500"
             onSubmit={handleSignIn}>
             <div className="flex flex-col items-center font-semibold">
-                <h1 className="text-2xl">OnLab-Clinical</h1>
+                <h1 className="text-2xl">{translate('app.title')}</h1>
 
-                <span className="text-lg">Sign in</span>
+                <h2 className="text-lg">{translate('auth.sign-in.title')}</h2>
             </div>
 
             <fieldset className="flex flex-col gap-4">
@@ -27,15 +27,13 @@ const SignInForm = memo(() => {
                 ))}
             </fieldset>
 
-            <Button type="submit" styleStrategy="primary">
-                <span>Sign In</span>
-            </Button>
+            <Button {...signInAction} />
 
             <span>
-                <span>If you dont have an account, please </span>
+                <span>{translate('auth.sign-in.sign-up-hint')} </span>
 
                 <Link to="../sign-up" className="text-secondary-600 underline">
-                    create one her!
+                    {translate('auth.sign-in.sign-up-nav')}
                 </Link>
             </span>
         </form>

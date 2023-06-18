@@ -2,9 +2,10 @@
 import { useMemo } from 'react';
 // hooks
 import { useSignInContext } from '../SignIn.context';
+import { Translation, useLanguage } from '@/contexts/core/language';
 import { useActive } from '@/shared/hooks';
 // components
-import { Icon, InputFieldProps } from '@/shared/components';
+import { ButtonProps, Icon, InputFieldProps } from '@/shared/components';
 // assets
 import { mdiAccountCircle, mdiEye, mdiEyeOff, mdiLock, mdiLockOpenAlert } from '@mdi/js';
 
@@ -14,9 +15,11 @@ export const useSignInForm = () => {
         handleSignIn,
         form: {
             register,
-            formState: { errors },
+            formState: { errors, isValid, isSubmitted },
         },
     } = useSignInContext();
+
+    const { translate } = useLanguage();
 
     const [isPasswordVisible, , , togglePasswordVisibility] = useActive(false);
 
@@ -24,28 +27,28 @@ export const useSignInForm = () => {
     const nameField: InputFieldProps = useMemo(
         () => ({
             inputId: 'sign-in-name',
-            title: 'User name',
+            title: translate('auth.name.label'),
             before: <Icon className="w-6 h-6" path={mdiAccountCircle} />,
             input: (
                 <input
                     type="text"
                     id="sign-in-name"
-                    placeholder="Type user name"
+                    placeholder={translate('auth.name.placeholder')}
                     {...register('name')}
                 />
             ),
-            hint: errors.name?.message,
+            hint: translate(errors.name?.message as Translation),
             isHintReserved: true,
             hasError: !!errors.name?.message,
             styleStrategy: 'primary',
         }),
-        [errors.name?.message, register]
+        [errors.name?.message, register, translate]
     );
 
     const passwordField: InputFieldProps = useMemo(
         () => ({
             inputId: 'sign-in-password',
-            title: 'User password',
+            title: translate('auth.password.label'),
             before: (
                 <Icon className="w-6 h-6" path={isPasswordVisible ? mdiLockOpenAlert : mdiLock} />
             ),
@@ -53,7 +56,7 @@ export const useSignInForm = () => {
                 <input
                     type={isPasswordVisible ? 'text' : 'password'}
                     id="sign-in-password"
-                    placeholder="Type user password"
+                    placeholder={translate('auth.password.placeholder')}
                     {...register('password')}
                 />
             ),
@@ -61,19 +64,35 @@ export const useSignInForm = () => {
                 <button
                     type="button"
                     className="hover:scale-105 active:scale-95"
+                    title={
+                        isPasswordVisible
+                            ? translate('auth.password.hide')
+                            : translate('auth.password.show')
+                    }
                     onClick={togglePasswordVisibility}>
                     <Icon className="w-6 h-6" path={isPasswordVisible ? mdiEyeOff : mdiEye} />
                 </button>
             ),
-            hint: errors.password?.message,
+            hint: translate(errors.password?.message as Translation),
             isHintReserved: true,
             hasError: !!errors.password?.message,
             styleStrategy: 'primary',
         }),
-        [errors.password?.message, isPasswordVisible, register, togglePasswordVisibility]
+        [errors.password?.message, isPasswordVisible, register, togglePasswordVisibility, translate]
     );
 
     const signInFormFields: InputFieldProps[] = [nameField, passwordField];
 
-    return { handleSignIn, signInFormFields };
+    // actions
+    const signInAction: ButtonProps = useMemo(
+        () => ({
+            type: 'submit',
+            styleStrategy: 'primary',
+            hasError: !isValid && isSubmitted,
+            children: <span>{translate('auth.sign-in.sign-in')}</span>,
+        }),
+        [isSubmitted, isValid, translate]
+    );
+
+    return { handleSignIn, signInFormFields, signInAction, translate };
 };

@@ -9,7 +9,7 @@ import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { content } from '@/shared/utils';
 // values
-import { langs } from '@/constants/langs';
+import { langs } from './langs';
 
 // setup language
 i18n.use(LanguageDetector)
@@ -21,7 +21,7 @@ i18n.use(LanguageDetector)
             caches: ['localStorage'],
         },
         resources: langs,
-        fallbackLng: 'en',
+        fallbackLng: 'es',
         interpolation: {
             escapeValue: false,
         },

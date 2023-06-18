@@ -6,7 +6,7 @@ import { Slot, StyleStrategy } from '@/shared/types';
 export interface ButtonProps
     extends Omit<
         DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
-        'children'
+        'children' | 'ref'
     > {
     styleStrategy?: StyleStrategy;
     children?: Slot;

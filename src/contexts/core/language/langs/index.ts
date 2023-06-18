@@ -1,5 +1,5 @@
 // types
-import { Language, Translation } from '@/contexts/core/language';
+import { Language, Translation } from '../language.type';
 // values
 import { en } from './en.lang';
 import { es } from './es.lang';

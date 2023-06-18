@@ -46,7 +46,7 @@ const Notification = memo(({ ID, kind, message }: StandardNotification) => {
                 <Icon path={icon[kind ?? 'info']} />
             </span>
 
-            <p className="flex-grow font-semibold">{message}</p>
+            <p className="flex-grow">{message}</p>
 
             <button
                 className="self-start text-xl p-1 transition-all hover:scale-105 active:scale-95"

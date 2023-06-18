@@ -4,32 +4,37 @@ import { DomainResponse, domainError, domainSuccess } from '@/shared/types/domai
 import { OnLabClinicalApiProvider } from '@/constants';
 // utils
 import { request } from '@/shared/utils';
+// entities
+import { Patient } from '../entities';
 
 export interface SignInRequest {
     name: string;
     password: string;
 }
 
-export interface SignInResponse {
-    name: string;
+export interface SignInResponse extends Patient {
+    token: string;
+    refresh: string;
 }
 
 export const signInRepository = async (
     req: SignInRequest
 ): Promise<DomainResponse<SignInResponse>> =>
-    await request<SignInResponse, SignInRequest, null>({
+    await request({
         instance: OnLabClinicalApiProvider,
+        path: '/auth/v1/sign-in/patients',
         method: 'POST',
-        path: '/auth/v1/patients/sign-in',
         body: req,
-        serializer: async (data, headers, status) => {
-            console.log(data, headers, status);
-            return domainSuccess({
-                name: '',
-            });
+        serializer: async data => {
+            return domainSuccess(data.data, 'info');
         },
         errorSerializer: async error => {
-            console.error(error.response?.data);
-            return domainError(error.message);
+            if (!error.response) {
+                return domainError(error.message);
+            }
+
+            const data = error.response.data;
+
+            return domainError(data.message, 'warning');
         },
     });

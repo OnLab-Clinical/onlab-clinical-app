@@ -2,7 +2,7 @@
 import { DomainResponse } from '../types/domain';
 import { Language } from '@/contexts/core/language';
 // utils
-import { AxiosError, AxiosInstance, AxiosResponseHeaders } from 'axios';
+import { AxiosError, AxiosInstance, AxiosResponseHeaders, RawAxiosResponseHeaders } from 'axios';
 
 type RequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
@@ -26,10 +26,11 @@ interface RequestProps<RequestBody, RequestParams, RequestResponse> {
     serializer: (
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         data: any,
-        headers: AxiosResponseHeaders,
+        headers: RawAxiosResponseHeaders | AxiosResponseHeaders,
         status?: number
     ) => Promise<DomainResponse<RequestResponse>>;
-    errorSerializer: (error: AxiosError) => Promise<DomainResponse<RequestResponse>>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    errorSerializer: (error: AxiosError<any>) => Promise<DomainResponse<RequestResponse>>;
     // configuration
     abort?: AbortController;
     timeout?: number;
@@ -75,10 +76,8 @@ export const request = async <RequestResponse, RequestBody = null, RequestParams
             data: body,
             signal: abort?.signal,
             timeout,
-            transformResponse: serializer,
         });
-
-        return response.data;
+        return serializer(response.data, response.headers, response.status);
     } catch (error) {
         return errorSerializer(error as AxiosError);
     }

@@ -1,8 +1,9 @@
 // types
 import { DomainResponse } from '../types/domain';
-import { Language } from '@/contexts/core/language';
 // utils
 import { AxiosError, AxiosInstance, AxiosResponseHeaders, RawAxiosResponseHeaders } from 'axios';
+// services
+import { Language, getCurrentLanguageService } from '@/contexts/core/language';
 
 type RequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
@@ -43,7 +44,7 @@ export const request = async <RequestResponse, RequestBody = null, RequestParams
     path,
     // common headers
     token,
-    lang = 'en',
+    lang = getCurrentLanguageService(),
     // transport data
     headers,
     params,

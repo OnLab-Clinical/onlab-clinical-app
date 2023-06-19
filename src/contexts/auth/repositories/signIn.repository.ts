@@ -26,7 +26,13 @@ export const signInRepository = async (
         method: 'POST',
         body: req,
         serializer: async data => {
-            return domainSuccess(data.data, 'info');
+            return domainSuccess<SignInResponse>(
+                {
+                    ...data.data,
+                    person: { ...data.data.person, birth: new Date(data.data.person.birth) },
+                },
+                'info'
+            );
         },
         errorSerializer: async error => {
             if (!error.response) {

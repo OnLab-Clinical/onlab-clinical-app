@@ -1,7 +1,7 @@
 // react
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 // types
-import { StandardNotification } from './notification.type';
+import { StandardNotification } from '@/shared/types';
 // configs
 import { AppState } from '../store';
 

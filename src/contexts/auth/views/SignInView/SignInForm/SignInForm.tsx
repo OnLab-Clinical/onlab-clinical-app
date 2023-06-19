@@ -11,8 +11,8 @@ const SignInForm = memo(() => {
     const { handleSignIn, signInFormFields, signInAction, translate } = useSignInForm();
 
     return (
-        <PanelLayout className="w-full max-w-sm">
-            <form className="flex flex-col gap-4" onSubmit={handleSignIn}>
+        <form className="w-full max-w-sm" onSubmit={handleSignIn}>
+            <PanelLayout>
                 <div className="flex flex-col items-center font-semibold">
                     <h1 className="text-2xl">{translate('app.title')}</h1>
 
@@ -36,8 +36,8 @@ const SignInForm = memo(() => {
                         {translate('auth.sign-in.sign-up-nav')}
                     </Link>
                 </span>
-            </form>
-        </PanelLayout>
+            </PanelLayout>
+        </form>
     );
 });
 

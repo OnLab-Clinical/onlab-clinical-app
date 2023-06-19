@@ -17,7 +17,7 @@ export interface LanguageSwitcherProps {
 
 export type Translation =
     // app
-    | `app.${'title'}`
+    | `app.${'title' | 'not-found' | 'start'}`
     | `theme.${'os' | 'light' | 'dark'}`
     | `actions.${'close' | 'reload'}`
     // authentication module
@@ -35,6 +35,6 @@ export type Translation =
                 | 'special'
                 | 'between'}`
           // Sign in view
-          | `sign-in.${'title' | 'sign-in' | 'sign-up-hint' | 'sign-up-nav'}`
+          | `sign-in.${'title' | 'sign-in' | 'sign-up-hint' | 'sign-up-nav' | 'welcome'}`
           // sign up view
           | `sign-up.${'title' | 'sign-up'}`}`;

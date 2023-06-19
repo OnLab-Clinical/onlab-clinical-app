@@ -32,5 +32,5 @@ const notificationSlice = createSlice({
 });
 
 export const notificationReducer = notificationSlice.reducer;
-export const notificationState = (state: AppState) => state.notification;
+export const notificationState = ({ notification }: AppState) => notification;
 export const notificationActions = notificationSlice.actions;

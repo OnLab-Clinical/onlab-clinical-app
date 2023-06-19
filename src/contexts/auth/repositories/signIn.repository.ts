@@ -1,11 +1,12 @@
 // types
-import { DomainResponse, domainError, domainSuccess } from '@/shared/types/domain';
+import { DomainResponse, domainSuccess } from '@/shared/types/domain';
 // constants
 import { OnLabClinicalApiProvider } from '@/constants';
 // utils
 import { request } from '@/shared/utils';
 // entities
 import { Patient } from '../entities';
+import { repeatLastRequestService } from '../services';
 
 export interface SignInRequest {
     name: string;
@@ -34,13 +35,5 @@ export const signInRepository = async (
                 'info'
             );
         },
-        errorSerializer: async error => {
-            if (!error.response) {
-                return domainError(error.message);
-            }
-
-            const data = error.response.data;
-
-            return domainError(data.message, 'warning');
-        },
+        errorSerializer: async error => repeatLastRequestService(error, signInRepository, req),
     });

@@ -5,6 +5,7 @@ import { themeReducer } from '../theme';
 import { loaderReducer } from '../loader';
 import { notificationReducer } from '../notification';
 // modules reducers
+import { authReducer } from '@/contexts/auth/reducers';
 
 // configure redux store
 export const store = configureStore({
@@ -12,6 +13,7 @@ export const store = configureStore({
         theme: themeReducer,
         loader: loaderReducer,
         notification: notificationReducer,
-        // modules reducers
+        // auth modules
+        auth: authReducer,
     },
 });

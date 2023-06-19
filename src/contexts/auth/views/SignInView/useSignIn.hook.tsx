@@ -1,6 +1,9 @@
 // react
 import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+// store
+import { authActions } from '../../reducers';
 // props
 import { SignInContextProps, SignInFormData } from './SignIn.props';
 // hooks
@@ -29,6 +32,8 @@ export const useSignIn = () => {
 
     const { addNotification } = useNotification();
 
+    const dispatch = useDispatch();
+
     // actions
     const handleSignIn = form.handleSubmit(async data => {
         showLoader();
@@ -44,7 +49,9 @@ export const useSignIn = () => {
             return hideLoader();
         }
 
-        console.log(response.data);
+        const { token, refresh, ...patient } = response.data;
+
+        dispatch(authActions.setPatient({ patient, token, refresh }));
 
         hideLoader();
     });

@@ -3,6 +3,8 @@ import { Translation } from '@/contexts/core/language';
 
 export const es: Record<Translation, string> = {
     'app.title': 'OnLab-Clinical',
+    'app.not-found': 'Página no encontrada 404',
+    'app.start': 'Regresar al inicio',
     'theme.os': 'Sistema',
     'theme.light': 'Claro',
     'theme.dark': 'Oscuro',
@@ -30,6 +32,7 @@ export const es: Record<Translation, string> = {
     'auth.sign-in.sign-in': 'Iniciar sesión',
     'auth.sign-in.sign-up-hint': 'Si aún no dispone de una cuenta, puedes crear una fácilmente',
     'auth.sign-in.sign-up-nav': 'aquí',
+    'auth.sign-in.welcome': 'Bienvenido a OnLab-Clinical, área personal de paciente',
     // sign up view
     'auth.sign-up.title': '',
     'auth.sign-up.sign-up': '',

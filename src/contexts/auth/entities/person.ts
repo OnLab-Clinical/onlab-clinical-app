@@ -4,6 +4,6 @@ export interface Person {
     name: string;
     surname: string;
     nid: string;
-    birth: Date;
+    birth: string;
     sex: PersonSex;
 }

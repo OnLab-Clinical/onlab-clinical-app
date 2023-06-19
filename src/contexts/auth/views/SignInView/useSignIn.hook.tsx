@@ -9,6 +9,7 @@ import { SignInContextProps, SignInFormData } from './SignIn.props';
 // hooks
 import { useLoader } from '@/contexts/core/loader';
 import { useNotification } from '@/contexts/core/notification';
+import { useLanguage } from '@/contexts/core/language';
 // utils
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -34,6 +35,8 @@ export const useSignIn = () => {
 
     const dispatch = useDispatch();
 
+    const { translate } = useLanguage();
+
     // actions
     const handleSignIn = form.handleSubmit(async data => {
         showLoader();
@@ -52,6 +55,12 @@ export const useSignIn = () => {
         const { token, refresh, ...patient } = response.data;
 
         dispatch(authActions.setPatient({ patient, token, refresh }));
+
+        addNotification({
+            message: translate('auth.sign-in.welcome'),
+            kind: response.kind,
+            timeout: 10 * 1000,
+        });
 
         hideLoader();
     });

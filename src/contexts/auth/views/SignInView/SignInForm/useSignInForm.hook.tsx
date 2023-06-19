@@ -57,6 +57,7 @@ export const useSignInForm = () => {
                     type={isPasswordVisible ? 'text' : 'password'}
                     id="sign-in-password"
                     placeholder={translate('auth.password.placeholder')}
+                    autoComplete="off"
                     {...register('password')}
                 />
             ),

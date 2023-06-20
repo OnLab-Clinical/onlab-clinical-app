@@ -2,6 +2,7 @@
 import { UseFormReturn } from 'react-hook-form';
 // types
 import { PersonSex } from '../../entities';
+import { Stepper } from '@/shared/hooks';
 
 export interface SignUpFormData {
     // person data
@@ -30,6 +31,7 @@ export interface SignUpFormData {
 export interface SignUpContextProps {
     // values
     form: UseFormReturn<SignUpFormData>;
+    stepper: Stepper;
     // actions
     handleSignUp: () => void;
 }

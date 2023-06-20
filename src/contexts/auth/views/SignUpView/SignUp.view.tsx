@@ -6,14 +6,17 @@ import { SignUpContext } from './SignUp.context';
 import { useSignUp } from './useSignUp.hook';
 // components
 import { SignUpForm } from './SignUpForm';
+import { SignUpStep1 } from './SignUpStep1';
 
 const SignUpView = memo(() => {
     const { context } = useSignUp();
 
     return (
         <SignUpContext.Provider value={context}>
-            <main className="flex-grow flex flex-col p-4">
-                <SignUpForm />
+            <main className="flex-grow flex flex-col items-center justify-center p-4">
+                <SignUpForm>
+                    <SignUpStep1 />
+                </SignUpForm>
             </main>
         </SignUpContext.Provider>
     );

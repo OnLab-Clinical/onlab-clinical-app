@@ -1,51 +1,54 @@
 import { useCallback, useState } from 'react';
 
 interface StepperProps {
-    min?: number;
-    max?: number;
+    minStep?: number;
+    maxStep: number;
     defaultStep?: number;
 }
 
-type Stepper = [
-    step: number,
-    prevStep: () => void,
-    nextStep: () => void,
-    setStep: (step: number) => void
+export type Stepper = [
+    stepProps: StepperProps & { currentStep: number },
+    stepActions: { prevStep: () => void; nextStep: () => void; setStep: (step: number) => void }
 ];
 
-export const useStepper = ({ min = 0, max, defaultStep = 0 }: StepperProps): Stepper => {
+export const useStepper = ({ minStep = 1, maxStep, defaultStep = 1 }: StepperProps): Stepper => {
     // validations
-    if (min < 0) throw Error('"min" must be greater or equal than "0"');
-    if (max != undefined) {
-        if (max < min) throw Error('"min" must be "undefined", greater or equal than "min"');
-        if (defaultStep > max || defaultStep < min)
-            throw Error('"defaultStep" must be between "min" & "max"');
-    } else if (defaultStep < min) throw Error('"defaultStep" must be greater or equal than "min"');
+    if (minStep < 1) throw Error('"minStep" must be greater or equal than "1"');
+
+    if (maxStep < minStep) throw Error('"maxStep" must be greater or equal than "minStep"');
+
+    if (defaultStep > maxStep || defaultStep < minStep)
+        throw Error('"defaultStep" must be between "minStep" & "maxStep"');
 
     // states
     const [currentStep, setCurrentStep] = useState<number>(defaultStep);
 
     const prevStep = useCallback(
         () =>
-            setCurrentStep(currentValue => (currentValue > min ? currentValue - 1 : currentValue)),
-        [min]
+            setCurrentStep(currentValue =>
+                currentValue > minStep ? currentValue - 1 : currentValue
+            ),
+        [minStep]
     );
 
     const nextStep = useCallback(
         () =>
             setCurrentStep(currentValue =>
-                max === undefined || currentValue < max ? currentValue + 1 : currentValue
+                currentValue < maxStep ? currentValue + 1 : currentValue
             ),
-        [max]
+        [maxStep]
     );
 
     const setStep = useCallback(
         (step: number) =>
             setCurrentStep(currentValue =>
-                (max === undefined || step <= max) && step >= min ? step : currentValue
+                step < minStep || step > maxStep ? currentValue : step
             ),
-        [max, min]
+        [maxStep, minStep]
     );
 
-    return [currentStep, prevStep, nextStep, setStep];
+    return [
+        { minStep, maxStep, defaultStep, currentStep },
+        { prevStep, nextStep, setStep },
+    ];
 };

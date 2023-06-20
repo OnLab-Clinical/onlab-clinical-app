@@ -82,7 +82,8 @@ export const useSignUpStep1 = () => {
                         <Selectable
                             key={index}
                             className={classNames(
-                                'flex flex-col items-center rounded-sm border-2 border-transparent p-1 transition-all focus:shadow-xl',
+                                'flex flex-col items-center rounded-sm border-2 p-1 transition-all focus:shadow-xl',
+                                currentSexSelected !== value && 'border-transparent',
                                 currentSexSelected === value &&
                                     'border-primary-500 bg-primary-500 bg-opacity-50'
                             )}
@@ -91,7 +92,7 @@ export const useSignUpStep1 = () => {
                             {...register('sex')}>
                             <Icon path={personSexIcon[value]} className="w-16 h-16" />
 
-                            <span>{translate(`auth.sex.${value}`)}</span>
+                            <span className="font-medium">{translate(`auth.sex.${value}`)}</span>
                         </Selectable>
                     ))}
                 </span>

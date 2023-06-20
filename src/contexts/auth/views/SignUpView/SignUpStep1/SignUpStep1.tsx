@@ -9,7 +9,7 @@ const SignUpStep1 = memo(() => {
     const { step1FormFields, nextAction } = useSignUpStep1();
 
     return (
-        <div className="flex flex-col gap-4 mx-auto w-full max-w-sm lg:max-w-none">
+        <div className="flex flex-col gap-4">
             <h2>Datos personales</h2>
 
             <fieldset className="flex flex-col gap-4">

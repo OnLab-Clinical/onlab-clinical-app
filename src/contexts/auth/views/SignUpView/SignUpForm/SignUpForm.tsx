@@ -18,7 +18,7 @@ const SignUpForm = memo(({ children }: { children?: Slot }) => {
     } = useSignUpContext();
 
     return (
-        <form className="w-full max-w-6xl" onSubmit={handleSignUp}>
+        <form className="w-full max-w-xs lg:max-w-6xl" onSubmit={handleSignUp}>
             <PanelLayout>
                 <div
                     className="flex flex-col lg:grid"

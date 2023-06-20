@@ -3,13 +3,13 @@ import { useMemo } from 'react';
 // context
 import { useSignUpContext } from '../SignUp.context';
 // props
-import { ButtonProps, Icon, InputFieldProps, Selectable } from '@/shared/components';
+import { ButtonProps, DatePicker, Icon, InputFieldProps, Selectable } from '@/shared/components';
 // entities
 import { PersonSex, personSex } from '@/contexts/auth/entities';
 // hooks
 import { Translation, useLanguage } from '@/contexts/core/language';
 // utils
-import { sub } from 'date-fns';
+import { Locale, format, isDate } from 'date-fns';
 import { classNames } from '@/shared/utils';
 // assets
 import { mdiHumanFemale, mdiHumanMale } from '@mdi/js';
@@ -19,6 +19,13 @@ const personSexIcon: Record<PersonSex, string> = {
     female: mdiHumanFemale,
 };
 
+const formatBirht = (date: Date, locale: Locale) =>
+    isDate(date)
+        ? format(date, 'iiii, dd / MMMM / yyyy', {
+              locale,
+          })
+        : null;
+
 export const useSignUpStep1 = () => {
     // states
     const {
@@ -26,10 +33,13 @@ export const useSignUpStep1 = () => {
             register,
             formState: { errors },
             watch,
+            setValue,
+            getValues,
+            trigger,
         },
     } = useSignUpContext();
 
-    const { translate } = useLanguage();
+    const { translate, dateLocale } = useLanguage();
 
     // fields
     const nameField: InputFieldProps = useMemo(
@@ -90,7 +100,7 @@ export const useSignUpStep1 = () => {
                             strategy="single"
                             value={value}
                             {...register('sex')}>
-                            <Icon path={personSexIcon[value]} className="w-16 h-16" />
+                            <Icon path={personSexIcon[value]} className="text-4xl" />
 
                             <span className="font-medium">{translate(`auth.sex.${value}`)}</span>
                         </Selectable>
@@ -106,24 +116,32 @@ export const useSignUpStep1 = () => {
         [currentSexSelected, errors.sex?.message, register, translate]
     );
 
+    const currentBirth = watch('birth');
     const birthField: InputFieldProps = useMemo(
         () => ({
             inputId: 'step1-birth',
             title: translate('auth.birth.label'),
             input: (
-                <input
-                    type="date"
+                <DatePicker
+                    onDateSelected={date => {
+                        if (date) setValue('birth', date);
+
+                        trigger('birth');
+                    }}
                     id="step1-birth"
-                    max={sub(new Date(), { years: 18 }).toISOString().split('T')[0]}
-                    {...register('birth')}
-                />
+                    {...register('birth')}>
+                    <span>
+                        {formatBirht(currentBirth, dateLocale) ||
+                            translate('auth.birth.placeholder')}
+                    </span>
+                </DatePicker>
             ),
             hint: translate((errors.birth?.message as Translation) ?? 'auth.birth.placeholder'),
             isHintReserved: true,
             hasError: !!errors.birth?.message,
             styleStrategy: 'primary',
         }),
-        [errors.birth?.message, register, translate]
+        [currentBirth, dateLocale, errors.birth?.message, register, setValue, translate, trigger]
     );
 
     const step1FormFields: InputFieldProps[] = [nameField, surnameField, sexField, birthField];
@@ -135,8 +153,9 @@ export const useSignUpStep1 = () => {
             styleStrategy: 'secondary',
             hasError: true,
             children: <span>{translate('actions.next')}</span>,
+            onClick: () => console.log(getValues()),
         }),
-        [translate]
+        [getValues, translate]
     );
 
     return { step1FormFields, nextAction, translate };

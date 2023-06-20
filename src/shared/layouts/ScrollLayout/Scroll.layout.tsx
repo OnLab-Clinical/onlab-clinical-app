@@ -2,7 +2,7 @@
 import { memo } from 'react';
 // types
 import { Direction } from '@/shared/types';
-import { ScrollLayoutProps } from './Scroll.type';
+import { ScrollLayoutProps } from './Scroll.props';
 // utils
 import { classNames, content } from '@/shared/utils';
 

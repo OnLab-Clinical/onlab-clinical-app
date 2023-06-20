@@ -1,4 +1,4 @@
 import ScrollLayout from './Scroll.layout';
 
 export { ScrollLayout };
-export * from './Scroll.type';
+export * from './Scroll.props';

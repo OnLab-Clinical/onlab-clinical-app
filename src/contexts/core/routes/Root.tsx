@@ -1,13 +1,14 @@
 // react
 import { memo, useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const Root = memo(() => {
     const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     useEffect(() => {
-        navigate('/auth/sign-in', { replace: true });
-    }, [navigate]);
+        if (pathname === '/') navigate('/auth/sign-in', { replace: true });
+    }, [navigate, pathname]);
 
     return <Outlet />;
 });

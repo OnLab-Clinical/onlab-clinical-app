@@ -27,13 +27,13 @@ export const useSignInForm = () => {
     const nameField: InputFieldProps = useMemo(
         () => ({
             inputId: 'sign-in-name',
-            title: translate('auth.name.label'),
+            title: translate('auth.username.label'),
             before: <Icon className="w-6 h-6" path={mdiAccountCircle} />,
             input: (
                 <input
                     type="text"
                     id="sign-in-name"
-                    placeholder={translate('auth.name.placeholder')}
+                    placeholder={translate('auth.username.placeholder')}
                     {...register('name')}
                 />
             ),

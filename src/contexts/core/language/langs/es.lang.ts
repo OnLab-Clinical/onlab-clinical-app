@@ -11,12 +11,12 @@ export const es: Record<Translation, string> = {
     'actions.close': 'Cerrar',
     'actions.reload': 'Recargar',
     // authentication module
-    'auth.name.label': 'Nombre',
-    'auth.name.placeholder': 'Nombre de usuario',
-    'auth.name.required': 'nombre de usuario es requerido',
-    'auth.name.start': 'debe empezar con una letra',
-    'auth.name.only': 'solo letras, números y guiones bajos "_"',
-    'auth.name.min': 'mínimo 3 dígitos & máximo 32 dígitos',
+    'auth.username.label': 'Nombre',
+    'auth.username.placeholder': 'Nombre de usuario',
+    'auth.username.required': 'nombre de usuario es requerido',
+    'auth.username.start': 'debe empezar con una letra',
+    'auth.username.only': 'solo letras, números y guiones bajos "_"',
+    'auth.username.min': 'mínimo 3 dígitos & máximo 32 dígitos',
     'auth.password.label': 'Contraseña',
     'auth.password.placeholder': 'Contraseña de usuario',
     'auth.password.required': 'contraseña de usuario es requerida',
@@ -36,4 +36,5 @@ export const es: Record<Translation, string> = {
     // sign up view
     'auth.sign-up.title': '',
     'auth.sign-up.sign-up': '',
+    'auth.sign-up.sign-in-nav': ''
 };

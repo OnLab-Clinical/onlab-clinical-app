@@ -10,17 +10,48 @@ import { useNotification } from '@/contexts/core/notification';
 import { useLanguage } from '@/contexts/core/language';
 import { useStepper } from '@/shared/hooks';
 // utils
-//import * as yup from 'yup';
-//import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import {
+    birthValidation,
+    nameValidation,
+    nidValidation,
+    sexValidation,
+    surnameValidation,
+    userNameValidation,
+    userPasswordValidation,
+} from '../../validations';
+// repositories
 
-/* const signUpValidation = yup.object({
-}); */
+const signUpValidation = yup.object({
+    // person
+    name: nameValidation,
+    surname: surnameValidation,
+    sex: sexValidation,
+    birth: birthValidation,
+    nid: nidValidation,
+
+    // contacts data
+    email: nameValidation,
+    // phone number
+    country: nameValidation,
+    phone: nameValidation,
+    // address
+    municipality: nameValidation,
+    address: nameValidation,
+    latitude: yup.number(),
+    longitude: yup.number(),
+
+    // user data
+    username: userNameValidation,
+    password: userPasswordValidation,
+});
 
 export const useSignUp = () => {
     // states
     const form = useForm<SignUpFormData>({
         mode: 'all',
-        //resolver: yupResolver(signUpValidation)
+        resolver: yupResolver(signUpValidation),
     });
 
     const stepper = useStepper({ maxStep: 3 });

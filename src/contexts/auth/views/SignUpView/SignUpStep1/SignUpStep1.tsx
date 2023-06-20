@@ -6,11 +6,11 @@ import { useSignUpStep1 } from './useSignUpStep1.hook';
 import { Button, InputField } from '@/shared/components';
 
 const SignUpStep1 = memo(() => {
-    const { step1FormFields, nextAction } = useSignUpStep1();
+    const { step1FormFields, nextAction, translate } = useSignUpStep1();
 
     return (
         <div className="flex flex-col gap-4">
-            <h2>Datos personales</h2>
+            <h2>{translate('auth.sign-up.step-1')}</h2>
 
             <fieldset className="flex flex-col gap-4">
                 {step1FormFields.map((field, index) => (

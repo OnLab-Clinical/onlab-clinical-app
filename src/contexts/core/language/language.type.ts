@@ -19,10 +19,15 @@ export type Translation =
     // app
     | `app.${'title' | 'not-found' | 'start'}`
     | `theme.${'os' | 'light' | 'dark'}`
-    | `actions.${'close' | 'reload'}`
+    | `actions.${'close' | 'reload' | 'prev' | 'next'}`
     // authentication module
     | `auth.${
-          | `name.${'label' | 'placeholder' | 'required' | 'start' | 'only' | 'min'}`
+          | `name.${'label' | 'placeholder' | 'required'}`
+          | `surname.${'label' | 'placeholder' | 'required'}`
+          | `sex.${'label' | 'male' | 'female' | 'required'}`
+          | `birth.${'label' | 'placeholder' | 'required' | 'adult'}`
+          | `nid.${'label' | 'placeholder' | 'required'}`
+          | `username.${'label' | 'placeholder' | 'required' | 'start' | 'only' | 'min'}`
           | `password.${
                 | 'label'
                 | 'placeholder'
@@ -37,4 +42,4 @@ export type Translation =
           // Sign in view
           | `sign-in.${'title' | 'sign-in' | 'sign-up-hint' | 'sign-up-nav' | 'welcome'}`
           // sign up view
-          | `sign-up.${'title' | 'sign-up'}`}`;
+          | `sign-up.${'title' | 'sign-in-nav' | 'step-1' | 'step-2' | 'step-3' | 'sign-up'}`}`;

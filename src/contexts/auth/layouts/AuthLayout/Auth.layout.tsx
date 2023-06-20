@@ -16,6 +16,8 @@ const AuthLayout = memo(() => {
         navigate('/dashboard', { replace: true });
     }, [isAuthenticated, navigate]);
 
+    if (isAuthenticated) return <></>;
+
     return <Outlet />;
 });
 

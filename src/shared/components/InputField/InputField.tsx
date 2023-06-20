@@ -16,6 +16,7 @@ const InputField = memo(
         before,
         input,
         after,
+        isContentUnstyled,
         hint,
         isHintReserved,
         hasError,
@@ -48,7 +49,8 @@ const InputField = memo(
                                 ? contentStyles.danger
                                 : contentStyles[
                                       contentString(styleStrategy, { hasError }) as StyleStrategy
-                                  ]
+                                  ],
+                            isContentUnstyled && 'border-b-transparent'
                         ),
                 }}
                 hasError={hasError}

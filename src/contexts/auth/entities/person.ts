@@ -1,5 +1,7 @@
 export type PersonSex = 'male' | 'female';
 
+export const personSex: PersonSex[] = ['male', 'female'];
+
 export interface Person {
     name: string;
     surname: string;

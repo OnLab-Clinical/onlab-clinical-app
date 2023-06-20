@@ -32,7 +32,7 @@ const SignInForm = memo(() => {
                 <span>
                     <span>{translate('auth.sign-in.sign-up-hint')} </span>
 
-                    <Link to="../sign-up" className="text-secondary-600 underline">
+                    <Link to="../sign-up" replace className="text-secondary-600 underline">
                         {translate('auth.sign-in.sign-up-nav')}
                     </Link>
                 </span>

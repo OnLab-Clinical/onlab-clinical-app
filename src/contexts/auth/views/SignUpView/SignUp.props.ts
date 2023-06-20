@@ -8,8 +8,8 @@ export interface SignUpFormData {
     // person data
     name: string;
     surname: string;
-    birth: Date;
     sex: PersonSex;
+    birth: Date;
     nid: string;
 
     // contacts data

@@ -2,19 +2,33 @@
 import { Translation } from '@/contexts/core/language';
 // utils
 import * as yup from 'yup';
+import { sub } from 'date-fns';
 
+// person
+export const nameValidation = yup.string().required('auth.name.required' satisfies Translation);
+export const surnameValidation = yup
+    .string()
+    .required('auth.surname.required' satisfies Translation);
+export const sexValidation = yup.string().required('auth.sex.required' satisfies Translation);
+export const birthValidation = yup
+    .date()
+    .typeError('auth.birth.required' satisfies Translation)
+    .required('auth.birth.required' satisfies Translation)
+    .max(sub(new Date(), { years: 18 }), 'auth.birth.adult' satisfies Translation);
+export const nidValidation = yup.string().required('auth.nid.required' satisfies Translation);
+
+// user
 export const userNameValidation = yup
     .string()
-    .required('auth.name.required' as Translation)
-    .matches(/^[A-Za-z]+.*$/, 'auth.name.start' as Translation)
-    .matches(/^\w+$/, 'auth.name.only' as Translation)
-    .matches(/^.{3,32}$/, 'auth.name.min' as Translation);
-
+    .required('auth.username.required' satisfies Translation)
+    .matches(/^[A-Za-z]+.*$/, 'auth.username.start' satisfies Translation)
+    .matches(/^\w+$/, 'auth.username.only' satisfies Translation)
+    .matches(/^.{3,32}$/, 'auth.username.min' satisfies Translation);
 export const userPasswordValidation = yup
     .string()
-    .required('auth.password.required' as Translation)
-    .matches(/^.*[a-z]+.*$/, 'auth.password.lowercase' as Translation)
-    .matches(/^.*[A-Z]+.*$/, 'auth.password.uppercase' as Translation)
-    .matches(/^.*\d+.*$/, 'auth.password.decimal' as Translation)
-    .matches(/^.*\W+.*$/, 'auth.password.special' as Translation)
-    .matches(/^.{8,32}$/, 'auth.password.between' as Translation);
+    .required('auth.password.required' satisfies Translation)
+    .matches(/^.*[a-z]+.*$/, 'auth.password.lowercase' satisfies Translation)
+    .matches(/^.*[A-Z]+.*$/, 'auth.password.uppercase' satisfies Translation)
+    .matches(/^.*\d+.*$/, 'auth.password.decimal' satisfies Translation)
+    .matches(/^.*\W+.*$/, 'auth.password.special' satisfies Translation)
+    .matches(/^.{8,32}$/, 'auth.password.between' satisfies Translation);

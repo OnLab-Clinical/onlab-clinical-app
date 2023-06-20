@@ -1,6 +1,6 @@
 // react
 import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
-// import { ReactDatePickerProps } from 'react-datepicker';
+import { CalendarProps } from 'react-calendar';
 // types
 import { Slot } from '@/shared/types';
 
@@ -10,7 +10,7 @@ export interface DatePickerProps
         'ref' | 'children' | 'type'
     > {
     children?: Slot;
-    selected?: Date;
     onDateSelected?: (date: Date | null) => void;
     closeOnSelected?: boolean;
+    calendar?: Omit<CalendarProps, 'onChange'>;
 }

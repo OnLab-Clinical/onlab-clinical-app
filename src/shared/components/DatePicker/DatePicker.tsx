@@ -7,15 +7,13 @@ import { useActive } from '@/shared/hooks';
 // layouts
 import { ModalLayout, PanelLayout } from '@/shared/layouts';
 // components
-//import ReactDatePicker from 'react-datepicker';
-import Calendar from 'react-calendar';
+import { Calendar } from 'react-calendar';
 import { content } from '@/shared/utils';
 // styles
-// import 'react-datepicker/dist/react-datepicker.css';
 import 'react-calendar/dist/Calendar.css';
 
 const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
-    ({ children, onClick, selected, onDateSelected, closeOnSelected = true, ...props }, ref) => {
+    ({ children, onClick, calendar, onDateSelected, closeOnSelected = true, ...props }, ref) => {
         const [isOpen, open, close] = useActive(false);
 
         const handleClick = useCallback(
@@ -28,8 +26,8 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
         );
 
         const handleSelect = useCallback(
-            (date: Date | null) => {
-                if (onDateSelected) onDateSelected(date);
+            (date: Date | null | [Date | null, Date | null]) => {
+                if (onDateSelected && date instanceof Date) onDateSelected(date);
 
                 if (closeOnSelected) close();
             },
@@ -54,16 +52,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
                             X
                         </button>
 
-                        {/* <ReactDatePicker
-                            onChange={handleSelect}
-                            selected={selected}
-                            showYearDropdown
-                            scrollableYearDropdown
-                            showMonthDropdown
-                            inline
-                        /> */}
-
-                        <Calendar />
+                        <Calendar onChange={handleSelect} {...calendar} />
                     </PanelLayout>
                 </ModalLayout>
             </label>

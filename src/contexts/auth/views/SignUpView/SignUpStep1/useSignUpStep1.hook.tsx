@@ -39,7 +39,7 @@ export const useSignUpStep1 = () => {
         },
     } = useSignUpContext();
 
-    const { translate, dateLocale } = useLanguage();
+    const { language, translate, dateLocale } = useLanguage();
 
     // fields
     const nameField: InputFieldProps = useMemo(
@@ -123,6 +123,7 @@ export const useSignUpStep1 = () => {
             title: translate('auth.birth.label'),
             input: (
                 <DatePicker
+                    calendar={{ value: currentBirth, locale: language }}
                     onDateSelected={date => {
                         if (date) setValue('birth', date);
 
@@ -136,12 +137,21 @@ export const useSignUpStep1 = () => {
                     </span>
                 </DatePicker>
             ),
-            hint: translate((errors.birth?.message as Translation) ?? 'auth.birth.placeholder'),
+            hint: translate(errors.birth?.message as Translation),
             isHintReserved: true,
             hasError: !!errors.birth?.message,
             styleStrategy: 'primary',
         }),
-        [currentBirth, dateLocale, errors.birth?.message, register, setValue, translate, trigger]
+        [
+            currentBirth,
+            dateLocale,
+            errors.birth?.message,
+            language,
+            register,
+            setValue,
+            translate,
+            trigger,
+        ]
     );
 
     const step1FormFields: InputFieldProps[] = [nameField, surnameField, sexField, birthField];

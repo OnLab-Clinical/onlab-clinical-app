@@ -19,12 +19,15 @@ const personSexIcon: Record<PersonSex, string> = {
     female: mdiHumanFemale,
 };
 
-const formatBirht = (date: Date, locale: Locale) =>
-    isDate(date)
-        ? format(date, 'iiii, dd / MMMM / yyyy', {
+const formatBirht = (date: Date, locale: Locale) => {
+    const formatString = locale.code === 'es' ? "dd 'de' MMMM 'de' yyyy" : 'MMMM do yyyy';
+
+    return isDate(date)
+        ? format(date, formatString, {
               locale,
           })
         : null;
+};
 
 export const useSignUpStep1 = () => {
     // states

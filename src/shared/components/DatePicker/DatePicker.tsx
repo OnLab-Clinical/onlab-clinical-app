@@ -4,17 +4,23 @@ import { MouseEvent, forwardRef, useCallback } from 'react';
 import { DatePickerProps } from './DatePicker.props';
 // hooks
 import { useActive } from '@/shared/hooks';
+import { useLanguage } from '@/contexts/core/language';
+// utils
+import { content } from '@/shared/utils';
 // layouts
 import { ModalLayout, PanelLayout } from '@/shared/layouts';
 // components
 import { Calendar } from 'react-calendar';
-import { content } from '@/shared/utils';
-// styles
-import 'react-calendar/dist/Calendar.css';
+import { Button } from '../Button';
+import { Icon } from '../Icon';
+// assets
+import { mdiClose } from '@mdi/js';
 
 const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     ({ children, onClick, calendar, onDateSelected, closeOnSelected = true, ...props }, ref) => {
         const [isOpen, open, close] = useActive(false);
+
+        const { translate } = useLanguage();
 
         const handleClick = useCallback(
             (event: MouseEvent<HTMLInputElement, globalThis.MouseEvent>) => {
@@ -48,11 +54,22 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
 
                 <ModalLayout isOpen={isOpen}>
                     <PanelLayout>
-                        <button type="button" onClick={close}>
-                            X
-                        </button>
+                        <Button
+                            className="self-end"
+                            type="button"
+                            onClick={close}
+                            styleStrategy="danger"
+                            title={translate('actions.close')}>
+                            <Icon path={mdiClose} className="text-xl" />
+                        </Button>
 
-                        <Calendar onChange={handleSelect} {...calendar} />
+                        <Calendar
+                            onChange={handleSelect}
+                            showFixedNumberOfWeeks
+                            showWeekNumbers
+                            calendarType="US"
+                            {...calendar}
+                        />
                     </PanelLayout>
                 </ModalLayout>
             </label>

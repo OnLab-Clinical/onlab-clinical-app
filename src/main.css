@@ -26,3 +26,70 @@
         @apply bg-dark-700 text-light-300;
     }
 }
+
+.react-calendar {
+    @apply flex flex-col gap-4 w-full max-w-md font-medium;
+}
+.react-calendar__navigation {
+    @apply gap-1 6xs:gap-2 5xs:gap-4;
+    @apply flex flex-row items-center;
+}
+.react-calendar__navigation__arrow {
+    @apply text-sm 6xs:text-base 5xs:text-xl;
+    @apply bg-primary-500 text-light-300 px-4 rounded-sm font-bold;
+    @apply transition-all hover:scale-[1.01] active:scale-[.99];
+    @apply bg-opacity-80 hover:bg-opacity-100;
+}
+.react-calendar__navigation__label {
+    @apply cursor-pointer font-semibold;
+}
+.react-calendar__viewContainer,
+.react-calendar__century-view,
+.react-calendar__decade-view,
+.react-calendar__year-view,
+.react-calendar__month-view {
+    @apply flex flex-col;
+}
+.react-calendar__century-view__decades,
+.react-calendar__decade-view__years,
+.react-calendar__year-view__months {
+    @apply gap-y-2;
+}
+.react-calendar__navigation__label,
+.react-calendar__month-view__weekdays__weekday,
+.react-calendar__tile {
+    @apply text-xs 6xs:text-sm 5xs:text-base;
+}
+.react-calendar__navigation__label,
+.react-calendar__tile {
+    @apply bg-primary-500 bg-opacity-0 transition-all hover:scale-[1.01] active:scale-[.99];
+    @apply rounded-sm hover:bg-opacity-20;
+}
+.react-calendar__tile {
+    @apply p-0.5 6xs:p-1 5xs:p-2;
+}
+.react-calendar__month-view__weekNumbers .react-calendar__tile {
+    @apply hover:bg-opacity-0 hover:scale-100 active:scale-100 font-semibold;
+}
+.react-calendar__month-view__weekdays {
+    @apply text-center capitalize;
+}
+.react-calendar__month-view__weekdays abbr {
+    @apply no-underline font-semibold;
+}
+.react-calendar__month-view__days__day {
+    @apply text-dark-700 theme-dark:text-light-300;
+}
+.react-calendar__month-view__weekdays__weekday--weekend,
+.react-calendar__month-view__days__day--weekend {
+    @apply text-danger-500 theme-dark:text-danger-500;
+}
+.react-calendar__month-view__days__day--neighboringMonth {
+    @apply opacity-30 font-normal;
+    @apply theme-dark:opacity-30 theme-dark:font-normal;
+}
+.react-calendar__tile--active,
+.react-calendar__month-view__days__day--weekend.react-calendar__tile--active {
+    @apply bg-opacity-100 text-light-300;
+    @apply hover:bg-opacity-100;
+}

@@ -36,7 +36,7 @@
 }
 .react-calendar__navigation__arrow {
     @apply text-sm 6xs:text-base 5xs:text-xl;
-    @apply bg-primary-500 text-light-300 px-4 rounded-sm font-bold;
+    @apply bg-secondary-500 text-light-300 px-4 rounded-sm font-bold;
     @apply transition-all hover:scale-[1.01] active:scale-[.99];
     @apply bg-opacity-80 hover:bg-opacity-100;
 }
@@ -62,7 +62,7 @@
 }
 .react-calendar__navigation__label,
 .react-calendar__tile {
-    @apply bg-primary-500 bg-opacity-0 transition-all hover:scale-[1.01] active:scale-[.99];
+    @apply bg-secondary-500 bg-opacity-0 transition-all hover:scale-[1.01] active:scale-[.99];
     @apply rounded-sm hover:bg-opacity-20;
 }
 .react-calendar__tile {

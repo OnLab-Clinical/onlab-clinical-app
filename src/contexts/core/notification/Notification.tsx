@@ -10,13 +10,7 @@ import { useLanguage } from '../language';
 // components
 import { Icon } from '@/shared/components';
 // assets
-import {
-    mdiAlertCircle,
-    mdiCheckCircle,
-    mdiCloseBox,
-    mdiCloseCircle,
-    mdiInformation,
-} from '@mdi/js';
+import { mdiAlertCircle, mdiCheckCircle, mdiClose, mdiCloseCircle, mdiInformation } from '@mdi/js';
 
 const Notification = memo(({ ID, kind, message }: StandardNotification) => {
     const { removeNotification } = useNotification();
@@ -54,7 +48,7 @@ const Notification = memo(({ ID, kind, message }: StandardNotification) => {
                 onClick={() => removeNotification(ID as string)}
                 title={translate('actions.close')}>
                 <span>
-                    <Icon path={mdiCloseBox} />
+                    <Icon path={mdiClose} />
                 </span>
             </button>
         </div>

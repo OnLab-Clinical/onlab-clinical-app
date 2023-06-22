@@ -3,7 +3,7 @@ import { MouseEvent, forwardRef, useCallback } from 'react';
 // props
 import { DatePickerProps } from './DatePicker.props';
 // hooks
-import { useActive } from '@/shared/hooks';
+import { useActive, useKeyDownEvent } from '@/shared/hooks';
 import { useLanguage } from '@/contexts/core/language';
 // utils
 import { content } from '@/shared/utils';
@@ -17,7 +17,10 @@ import { Icon } from '../Icon';
 import { mdiClose } from '@mdi/js';
 
 const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
-    ({ children, onClick, calendar, onDateSelected, closeOnSelected = true, ...props }, ref) => {
+    (
+        { children, onClick, calendar, onDateSelected, closeOnSelected = true, id, ...props },
+        ref
+    ) => {
         const [isOpen, open, close] = useActive(false);
 
         const { translate } = useLanguage();
@@ -31,13 +34,29 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
             [onClick, open]
         );
 
+        const handleClose = useCallback(() => {
+            close();
+
+            if (!id) return;
+
+            document.getElementById(id)?.focus();
+        }, [close, id]);
+
+        useKeyDownEvent(event => {
+            if (event.key !== 'Escape' || !isOpen) return;
+
+            handleClose();
+        });
+
         const handleSelect = useCallback(
             (date: Date | null | [Date | null, Date | null]) => {
-                if (onDateSelected && date instanceof Date) onDateSelected(date);
+                if (onDateSelected && date instanceof Date) {
+                    onDateSelected(date);
+                }
 
-                if (closeOnSelected) close();
+                if (closeOnSelected) handleClose();
             },
-            [close, closeOnSelected, onDateSelected]
+            [closeOnSelected, handleClose, onDateSelected]
         );
 
         return (
@@ -49,6 +68,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
                     type="button"
                     onClick={handleClick}
                     ref={ref}
+                    id={id}
                     {...props}
                 />
 
@@ -57,7 +77,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
                         <Button
                             className="self-end"
                             type="button"
-                            onClick={close}
+                            onClick={handleClose}
                             styleStrategy="danger"
                             title={translate('actions.close')}>
                             <Icon path={mdiClose} className="text-xl" />

@@ -13,7 +13,7 @@ const SignInForm = memo(() => {
     return (
         <form className="w-full max-w-sm" onSubmit={handleSignIn}>
             <PanelLayout>
-                <div className="flex flex-col items-center font-semibold">
+                <div className="flex flex-col items-center text-center font-semibold">
                     <h1 className="text-2xl">{translate('app.title')}</h1>
 
                     <h2 className="text-lg">{translate('auth.sign-in.title')}</h2>
@@ -32,7 +32,10 @@ const SignInForm = memo(() => {
                 <span>
                     <span>{translate('auth.sign-in.sign-up-hint')} </span>
 
-                    <Link to="../sign-up" replace className="text-secondary-600 underline">
+                    <Link
+                        to="../sign-up"
+                        replace
+                        className="text-secondary-500 underline font-medium">
                         {translate('auth.sign-in.sign-up-nav')}
                     </Link>
                 </span>

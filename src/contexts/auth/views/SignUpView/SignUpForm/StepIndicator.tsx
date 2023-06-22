@@ -12,7 +12,7 @@ const StepIndicator = memo(() => {
 
     return (
         <span
-            className="grid gap-2 mx-auto sticky bottom-4 backdrop-blur-md px-2 py-1 rounded-sm lg:hidden"
+            className="grid gap-2 self-center px-2 py-1 rounded-sm lg:hidden"
             style={{
                 gridTemplateColumns: `repeat(${stepProps.maxStep}, 1fr)`,
             }}>

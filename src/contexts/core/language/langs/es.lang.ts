@@ -10,7 +10,28 @@ export const es: Record<Translation, string> = {
     'theme.dark': 'Oscuro',
     'actions.close': 'Cerrar',
     'actions.reload': 'Recargar',
+    'actions.prev': 'Anterior',
+    'actions.next': 'Siguiente',
     // authentication module
+    // person
+    'auth.name.label': 'Nombre',
+    'auth.name.placeholder': 'Escriba su nombre',
+    'auth.name.required': 'su nombre es requerido',
+    'auth.surname.label': 'Apellido',
+    'auth.surname.placeholder': 'Escriba su apellido',
+    'auth.surname.required': 'su apellido es requerido',
+    'auth.sex.label': 'Sexo',
+    'auth.sex.required': 'su sexo es requerido',
+    'auth.sex.male': 'Hombre',
+    'auth.sex.female': 'Mujer',
+    'auth.birth.label': 'Fecha de nacimiento',
+    'auth.birth.placeholder': 'Seleccione su fecha',
+    'auth.birth.required': 'su fecha de nacimiento es requerida',
+    'auth.birth.adult': 'usted debe ser mayor de edad',
+    'auth.nid.label': 'Documento de identidad',
+    'auth.nid.placeholder': 'Escriba su número de documento',
+    'auth.nid.required': 'su número de documento es requerido',
+    // authentication
     'auth.username.label': 'Nombre',
     'auth.username.placeholder': 'Nombre de usuario',
     'auth.username.required': 'nombre de usuario es requerido',
@@ -34,7 +55,10 @@ export const es: Record<Translation, string> = {
     'auth.sign-in.sign-up-nav': 'aquí',
     'auth.sign-in.welcome': 'Bienvenido a OnLab-Clinical, área personal de paciente',
     // sign up view
-    'auth.sign-up.title': '',
+    'auth.sign-up.title': 'Nuevo paciente',
     'auth.sign-up.sign-up': '',
-    'auth.sign-up.sign-in-nav': ''
+    'auth.sign-up.sign-in-nav': 'inicio de sesión',
+    'auth.sign-up.step-1': 'Datos personales',
+    'auth.sign-up.step-2': '',
+    'auth.sign-up.step-3': '',
 };

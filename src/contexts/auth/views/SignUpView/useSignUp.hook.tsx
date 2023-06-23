@@ -54,7 +54,7 @@ export const useSignUp = () => {
         resolver: yupResolver(signUpValidation),
     });
 
-    const stepper = useStepper({ maxStep: 3 });
+    const stepper = useStepper({ maxStep: 3, defaultStep: 2 });
 
     const { showLoader, hideLoader } = useLoader();
 

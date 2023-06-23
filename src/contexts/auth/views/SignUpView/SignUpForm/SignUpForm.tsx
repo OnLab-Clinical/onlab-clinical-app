@@ -44,7 +44,7 @@ const SignUpForm = memo(({ children }: { children?: Slot }) => {
                 </div>
 
                 <div
-                    className="flex flex-col lg:grid lg:gap-4 xl:gap-6 2xl:gap-8"
+                    className="flex flex-col lg:grid lg:gap-4 xl:gap-6 2xl:gap-8 3xl:gap-10 4xl:gap-12"
                     style={{
                         gridTemplateColumns: `repeat(${step.maxStep}, 1fr)`,
                     }}>

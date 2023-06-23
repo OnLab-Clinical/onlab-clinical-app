@@ -27,6 +27,17 @@ export type Translation =
           | `sex.${'label' | 'male' | 'female' | 'required'}`
           | `birth.${'label' | 'placeholder' | 'required' | 'adult'}`
           | `nid.${'label' | 'placeholder' | 'required'}`
+          | `email.${'label' | 'placeholder' | 'required' | 'format'}`
+          | `country.${
+                | 'placeholder'
+                | 'calling-placeholder'
+                | 'required'
+                | 'calling-required'}`
+          | `phone.${'label' | 'placeholder' | 'required' | 'format'}`
+          | `department.${'placeholder' | 'required'}`
+          | `municipality.${'placeholder' | 'required'}`
+          | `address.${'label' | 'placeholder' | 'required'}`
+          | `location.${'label'}`
           | `username.${'label' | 'placeholder' | 'required' | 'start' | 'only' | 'min'}`
           | `password.${
                 | 'label'

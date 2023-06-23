@@ -18,6 +18,8 @@ export interface SignUpFormData {
     country: string;
     phone: string;
     // address
+    addressCountry: string;
+    department: string;
     municipality: string;
     address: string;
     latitude: number;

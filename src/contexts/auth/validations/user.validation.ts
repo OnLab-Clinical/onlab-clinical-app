@@ -17,6 +17,12 @@ export const birthValidation = yup
     .max(sub(new Date(), { years: 18 }), 'auth.birth.adult' satisfies Translation);
 export const nidValidation = yup.string().required('auth.nid.required' satisfies Translation);
 
+// contacts
+export const phoneValidation = yup
+    .string()
+    .required('auth.phone.required' satisfies Translation)
+    .matches(/^\d{7,10}$/, 'auth.phone.format' satisfies Translation);
+
 // user
 export const userNameValidation = yup
     .string()

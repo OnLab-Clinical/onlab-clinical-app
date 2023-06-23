@@ -12,7 +12,7 @@ import { Translation, useLanguage } from '@/contexts/core/language';
 import { Locale, format, isDate } from 'date-fns';
 import { classNames } from '@/shared/utils';
 // assets
-import { mdiArrowRight, mdiHumanFemale, mdiHumanMale } from '@mdi/js';
+import { mdiArrowRight, mdiCalendar, mdiHumanFemale, mdiHumanMale } from '@mdi/js';
 
 const personSexIcon: Record<PersonSex, string> = {
     male: mdiHumanMale,
@@ -65,7 +65,13 @@ export const useSignUpStep1 = () => {
         ];
 
         const state = await trigger(evaluate);
-        if (state) return nextStep();
+        if (state) {
+            nextStep();
+
+            setFocus('email');
+
+            return;
+        }
 
         const toFocus = evaluate.find(key => getFieldState(key).error);
         if (!toFocus) return;
@@ -132,7 +138,7 @@ export const useSignUpStep1 = () => {
                             strategy="single"
                             value={value}
                             {...register('sex')}>
-                            <Icon path={personSexIcon[value]} className="text-4xl" />
+                            <Icon path={personSexIcon[value]} className="text-5xl" />
 
                             <span className="font-medium">{translate(`auth.sex.${value}`)}</span>
                         </Selectable>
@@ -166,6 +172,7 @@ export const useSignUpStep1 = () => {
             title: translate('auth.birth.label'),
             input: (
                 <DatePicker
+                    className="flex flex-col"
                     calendar={{ value: currentBirth, locale: language }}
                     onDateSelected={date => {
                         if (!date) return;
@@ -176,9 +183,13 @@ export const useSignUpStep1 = () => {
                     }}
                     id="step1-birth"
                     {...register('birth')}>
-                    <span className={classNames(!currentBirth && 'opacity-60')}>
-                        {formatBirht(currentBirth, dateLocale) ||
-                            translate('auth.birth.placeholder')}
+                    <span className="flex-grow flex flex-row gap-4 justify-between items-center">
+                        <span>
+                            {formatBirht(currentBirth, dateLocale) ||
+                                translate('auth.birth.placeholder')}
+                        </span>
+
+                        <Icon path={mdiCalendar} />
                     </span>
                 </DatePicker>
             ),

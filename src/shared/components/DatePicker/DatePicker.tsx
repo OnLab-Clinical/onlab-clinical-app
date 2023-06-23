@@ -6,7 +6,7 @@ import { DatePickerProps } from './DatePicker.props';
 import { useActive, useKeyDownEvent } from '@/shared/hooks';
 import { useLanguage } from '@/contexts/core/language';
 // utils
-import { content } from '@/shared/utils';
+import { classNames, content } from '@/shared/utils';
 // layouts
 import { ModalLayout, PanelLayout } from '@/shared/layouts';
 // components
@@ -18,7 +18,16 @@ import { mdiClose } from '@mdi/js';
 
 const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     (
-        { children, onClick, calendar, onDateSelected, closeOnSelected = true, id, ...props },
+        {
+            className,
+            children,
+            onClick,
+            calendar,
+            onDateSelected,
+            closeOnSelected = true,
+            id,
+            ...props
+        },
         ref
     ) => {
         const [isOpen, open, close] = useActive(false);
@@ -60,7 +69,11 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
         );
 
         return (
-            <label className="w-0 h-full flex-grow bg-transparent px-1 py-0.5 text-dark-700 theme-dark:text-light-300">
+            <label
+                className={classNames(
+                    'w-0 h-full flex-grow bg-transparent px-1 py-0.5 text-dark-700 theme-dark:text-light-300',
+                    className
+                )}>
                 {content(children, undefined)}
 
                 <input

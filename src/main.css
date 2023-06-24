@@ -34,6 +34,7 @@
     }
 }
 
+/* React calendar */
 .react-calendar {
     @apply flex flex-col gap-4 w-full max-w-md font-medium;
 }
@@ -99,4 +100,25 @@
 .react-calendar__month-view__days__day--weekend.react-calendar__tile--active {
     @apply bg-opacity-100 text-light-300;
     @apply hover:bg-opacity-100;
+}
+
+/* React leaflet */
+.leaflet-pane {
+    z-index: 1;
+}
+.leaflet-top,
+.leaflet-bottom {
+    z-index: 2;
+}
+.leaflet-marker-icon > svg {
+    height: 100%;
+    width: 100%;
+}
+.leaflet-control-attribution {
+    display: none;
+}
+.leaflet-control-zoom .leaflet-control-zoom-in,
+.leaflet-control-zoom .leaflet-control-zoom-out {
+    @apply bg-primary-500 bg-opacity-80 text-light-300;
+    @apply hover:bg-primary-500 hover:bg-opacity-100;
 }

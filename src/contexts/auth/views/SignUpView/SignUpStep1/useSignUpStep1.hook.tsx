@@ -138,7 +138,7 @@ export const useSignUpStep1 = () => {
                             strategy="single"
                             value={value}
                             {...register('sex')}>
-                            <Icon path={personSexIcon[value]} className="text-5xl" />
+                            <Icon path={personSexIcon[value]} className="text-6xl" />
 
                             <span className="font-medium">{translate(`auth.sex.${value}`)}</span>
                         </Selectable>
@@ -188,10 +188,13 @@ export const useSignUpStep1 = () => {
                             {formatBirht(currentBirth, dateLocale) ||
                                 translate('auth.birth.placeholder')}
                         </span>
-
-                        <Icon path={mdiCalendar} />
                     </span>
                 </DatePicker>
+            ),
+            after: (
+                <label htmlFor="step1-birth">
+                    <Icon path={mdiCalendar} className="text-xl" />
+                </label>
             ),
             hint: translate(errors.birth?.message as Translation),
             isHintReserved: true,

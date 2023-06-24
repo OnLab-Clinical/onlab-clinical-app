@@ -1,13 +1,12 @@
 // react
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 // context
 import { useSignUpContext } from '../SignUp.context';
 // props
-import { ButtonProps, Icon, InputFieldProps } from '@/shared/components';
+import { ButtonProps, Icon, InputFieldProps, MarkerPosition } from '@/shared/components';
 // hooks
 import { Translation, useLanguage } from '@/contexts/core/language';
-// utils
-import { classNames } from '@/shared/utils';
+import { useOnScreen } from '@/shared/hooks';
 // assets
 import { mdiArrowLeft, mdiArrowRight } from '@mdi/js';
 
@@ -36,7 +35,28 @@ export const useSignUpStep2 = () => {
         return false;
     }, [errors.email]);
 
+    const currentLocation: MarkerPosition = {
+        latitude: watch('latitude', 0),
+        longitude: watch('longitude', 0),
+    };
+
+    const wrapperRef = useRef<HTMLDivElement>(null);
+    const isWrapperVisible = useOnScreen(wrapperRef);
+
+    const isAutoLocate = useMemo(
+        () => isWrapperVisible && currentLocation.latitude === 0 && currentLocation.longitude === 0,
+        [currentLocation.latitude, currentLocation.longitude, isWrapperVisible]
+    );
+
     // actions
+    const handlePositionChange = useCallback(
+        (position: MarkerPosition) => {
+            setValue('latitude', position.latitude);
+            setValue('longitude', position.longitude);
+        },
+        [setValue]
+    );
+
     const validateNextStep = useCallback(async () => {
         const evaluate: (
             | 'addressCountry'
@@ -226,5 +246,15 @@ export const useSignUpStep2 = () => {
         [step2HasError, translate, validateNextStep]
     );
 
-    return { step2FormFields, prevAction, nextAction, translate, isStep2CurrentStep };
+    return {
+        step2FormFields,
+        prevAction,
+        nextAction,
+        translate,
+        isStep2CurrentStep,
+        currentLocation,
+        handlePositionChange,
+        wrapperRef,
+        isAutoLocate,
+    };
 };

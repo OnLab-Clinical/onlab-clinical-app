@@ -28,7 +28,7 @@ export const useSignInForm = () => {
         () => ({
             inputId: 'sign-in-name',
             title: translate('auth.username.label'),
-            before: <Icon className="w-6 h-6" path={mdiAccountCircle} />,
+            before: <Icon className="text-xl" path={mdiAccountCircle} />,
             input: (
                 <input
                     type="text"
@@ -50,7 +50,7 @@ export const useSignInForm = () => {
             inputId: 'sign-in-password',
             title: translate('auth.password.label'),
             before: (
-                <Icon className="w-6 h-6" path={isPasswordVisible ? mdiLockOpenAlert : mdiLock} />
+                <Icon className="text-xl" path={isPasswordVisible ? mdiLockOpenAlert : mdiLock} />
             ),
             input: (
                 <input
@@ -71,7 +71,7 @@ export const useSignInForm = () => {
                             : translate('auth.password.show')
                     }
                     onClick={togglePasswordVisibility}>
-                    <Icon className="w-6 h-6" path={isPasswordVisible ? mdiEyeOff : mdiEye} />
+                    <Icon className="text-xl" path={isPasswordVisible ? mdiEyeOff : mdiEye} />
                 </button>
             ),
             hint: translate(errors.password?.message as Translation),

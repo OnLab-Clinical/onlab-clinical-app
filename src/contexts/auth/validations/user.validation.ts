@@ -18,6 +18,23 @@ export const birthValidation = yup
 export const nidValidation = yup.string().required('auth.nid.required' satisfies Translation);
 
 // contacts
+export const addressCountryValidation = yup
+    .string()
+    .required('auth.country.required' satisfies Translation);
+export const departmentValidation = yup
+    .string()
+    .required('auth.department.required' satisfies Translation);
+export const municipalityValidation = yup
+    .string()
+    .required('auth.municipality.required' satisfies Translation);
+export const addressValidation = yup
+    .string()
+    .required('auth.address.required' satisfies Translation);
+
+export const emailValidation = yup
+    .string()
+    .required('auth.email.required' satisfies Translation)
+    .email('auth.email.format' satisfies Translation);
 export const phoneValidation = yup
     .string()
     .required('auth.phone.required' satisfies Translation)

@@ -183,12 +183,7 @@ export const useSignUpStep1 = () => {
                     }}
                     id="step1-birth"
                     {...register('birth')}>
-                    <span className="flex-grow flex flex-row gap-4 justify-between items-center">
-                        <span>
-                            {formatBirht(currentBirth, dateLocale) ||
-                                translate('auth.birth.placeholder')}
-                        </span>
-                    </span>
+                    {formatBirht(currentBirth, dateLocale) || translate('auth.birth.placeholder')}
                 </DatePicker>
             ),
             after: (

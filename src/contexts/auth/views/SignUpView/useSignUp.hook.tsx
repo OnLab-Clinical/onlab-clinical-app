@@ -13,7 +13,12 @@ import { useStepper } from '@/shared/hooks';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
+    addressCountryValidation,
+    addressValidation,
     birthValidation,
+    departmentValidation,
+    emailValidation,
+    municipalityValidation,
     nameValidation,
     nidValidation,
     sexValidation,
@@ -31,18 +36,19 @@ const signUpValidation = yup.object({
     birth: birthValidation,
     nid: nidValidation,
 
-    // contacts data
-    email: nameValidation,
-    // phone number
-    country: nameValidation,
-    phone: nameValidation,
     // address
-    municipality: nameValidation,
-    address: nameValidation,
+    addressCountry: addressCountryValidation,
+    department: departmentValidation,
+    municipality: municipalityValidation,
+    address: addressValidation,
     latitude: yup.number(),
     longitude: yup.number(),
 
     // user data
+    email: emailValidation,
+    // phone number
+    country: nameValidation,
+    phone: nameValidation,
     username: userNameValidation,
     password: userPasswordValidation,
 });

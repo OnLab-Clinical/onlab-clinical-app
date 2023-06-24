@@ -51,7 +51,6 @@ export const es: Record<Translation, string> = {
     'auth.address.label': 'Dirección de residencia',
     'auth.address.placeholder': 'Escriba su dirección de residencia',
     'auth.address.required': 'su dirección de residencia es requerida',
-    'auth.location.label': 'Posición geográfica',
     // authentication
     'auth.username.label': 'Nombre',
     'auth.username.placeholder': 'Nombre de usuario',

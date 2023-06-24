@@ -12,11 +12,6 @@ export interface SignUpFormData {
     birth: Date;
     nid: string;
 
-    // contacts data
-    email: string;
-    // phone number
-    country: string;
-    phone: string;
     // address
     addressCountry: string;
     department: string;
@@ -26,6 +21,10 @@ export interface SignUpFormData {
     longitude: number;
 
     // user data
+    email: string;
+    // phone number
+    country: string;
+    phone: string;
     username: string;
     password: string;
 }

@@ -36,10 +36,14 @@ export type Translation =
           | `username.${'label' | 'placeholder' | 'required' | 'start' | 'only' | 'min'}`
           | `password.${
                 | 'label'
+                | 'label-confirm'
                 | 'placeholder'
+                | 'placeholder-confirm'
                 | 'show'
                 | 'hide'
                 | 'required'
+                | 'required-confirm'
+                | 'equal'
                 | 'lowercase'
                 | 'uppercase'
                 | 'decimal'

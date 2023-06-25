@@ -34,6 +34,8 @@ const DraggableMarker = memo(
                     latitude: event.latlng.lat,
                     longitude: event.latlng.lng,
                 });
+
+                map.zoomIn(5, { animate: true });
             },
             ...(isDraggable
                 ? {

@@ -16,11 +16,14 @@ import {
     addressCountryValidation,
     addressValidation,
     birthValidation,
+    confirmPasswordValidation,
+    countryValidation,
     departmentValidation,
     emailValidation,
     municipalityValidation,
     nameValidation,
     nidValidation,
+    phoneValidation,
     sexValidation,
     surnameValidation,
     userNameValidation,
@@ -50,10 +53,11 @@ const signUpValidation = yup.object({
     // user data
     email: emailValidation,
     // phone number
-    country: nameValidation,
-    phone: nameValidation,
+    country: countryValidation,
+    phone: phoneValidation,
     username: userNameValidation,
     password: userPasswordValidation,
+    confirmPassword: confirmPasswordValidation,
 });
 
 export const useSignUp = () => {
@@ -66,7 +70,7 @@ export const useSignUp = () => {
         resolver: yupResolver(signUpValidation),
     });
 
-    const stepper = useStepper({ maxStep: 3, defaultStep: 2 });
+    const stepper = useStepper({ maxStep: 3, defaultStep: 3 });
 
     const { showLoader, hideLoader } = useLoader();
 

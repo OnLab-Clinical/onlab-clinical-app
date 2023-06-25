@@ -94,57 +94,6 @@ export const useSignUpStep2 = () => {
     }, [getFieldState, nextStep, setFocus, trigger]);
 
     // fields
-    const emailField: InputFieldProps = useMemo(
-        () => ({
-            inputId: 'step2-email',
-            title: translate('auth.email.label'),
-            input: (
-                <input
-                    type="email"
-                    id="step2-email"
-                    placeholder={translate('auth.email.placeholder')}
-                    {...register('email')}
-                />
-            ),
-            hint: translate(errors.email?.message as Translation),
-            isHintReserved: true,
-            hasError: !!errors.email?.message,
-            styleStrategy: 'primary',
-        }),
-        [errors.email?.message, register, translate]
-    );
-
-    const phoneField: InputFieldProps = useMemo(
-        () => ({
-            inputId: 'step2-country',
-            title: translate('auth.phone.label'),
-            before: (
-                <select
-                    id="step2-country"
-                    className="w-24 flex-grow-0"
-                    defaultValue=""
-                    {...register('country')}>
-                    <option hidden value="">
-                        {translate('auth.country.calling-placeholder')}
-                    </option>
-                </select>
-            ),
-            input: (
-                <input
-                    type="tel"
-                    id="step2-phone"
-                    placeholder={translate('auth.phone.placeholder')}
-                    {...register('phone')}
-                />
-            ),
-            hint: translate((errors.country?.message || errors.phone?.message) as Translation),
-            isHintReserved: true,
-            hasError: !!errors.country?.message || !!errors.phone?.message,
-            styleStrategy: 'primary',
-        }),
-        [errors.country?.message, errors.phone?.message, register, translate]
-    );
-
     const addressCountryField: InputFieldProps = useMemo(
         () => ({
             inputId: 'step2-addressCountry',

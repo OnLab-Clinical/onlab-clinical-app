@@ -35,6 +35,9 @@ export const emailValidation = yup
     .string()
     .required('auth.email.required' satisfies Translation)
     .email('auth.email.format' satisfies Translation);
+export const countryValidation = yup
+    .string()
+    .required('auth.country.calling-required' satisfies Translation);
 export const phoneValidation = yup
     .string()
     .required('auth.phone.required' satisfies Translation)
@@ -55,3 +58,7 @@ export const userPasswordValidation = yup
     .matches(/^.*\d+.*$/, 'auth.password.decimal' satisfies Translation)
     .matches(/^.*\W+.*$/, 'auth.password.special' satisfies Translation)
     .matches(/^.{8,32}$/, 'auth.password.between' satisfies Translation);
+export const confirmPasswordValidation = yup
+    .string()
+    .required('auth.password.required-confirm' satisfies Translation)
+    .oneOf([yup.ref('password')], 'auth.password.equal' satisfies Translation);

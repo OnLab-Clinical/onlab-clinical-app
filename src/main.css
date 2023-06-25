@@ -121,4 +121,5 @@
 .leaflet-control-zoom .leaflet-control-zoom-out {
     @apply bg-primary-500 bg-opacity-80 text-light-300;
     @apply hover:bg-primary-500 hover:bg-opacity-100;
+    @apply focus:bg-primary-500 focus:bg-opacity-100;
 }

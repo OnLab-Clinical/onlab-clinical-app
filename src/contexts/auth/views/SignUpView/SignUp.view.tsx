@@ -8,6 +8,7 @@ import { useSignUp } from './useSignUp.hook';
 import { SignUpForm } from './SignUpForm';
 import { SignUpStep1 } from './SignUpStep1';
 import { SignUpStep2 } from './SignUpStep2';
+import { SignUpStep3 } from './SignUpStep3';
 
 const SignUpView = memo(() => {
     const { context } = useSignUp();
@@ -19,6 +20,8 @@ const SignUpView = memo(() => {
                     <SignUpStep1 />
 
                     <SignUpStep2 />
+
+                    <SignUpStep3 />
                 </SignUpForm>
             </main>
         </SignUpContext.Provider>

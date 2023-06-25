@@ -36,15 +36,18 @@ export const useSignUpStep2 = () => {
     }, [errors.email]);
 
     const currentLocation: MarkerPosition = {
-        latitude: watch('latitude', 0),
-        longitude: watch('longitude', 0),
+        latitude: watch('latitude', 12),
+        longitude: watch('longitude', -86),
     };
 
     const wrapperRef = useRef<HTMLDivElement>(null);
     const isWrapperVisible = useOnScreen(wrapperRef);
 
     const isAutoLocate = useMemo(
-        () => isWrapperVisible && currentLocation.latitude === 0 && currentLocation.longitude === 0,
+        () =>
+            isWrapperVisible &&
+            currentLocation.latitude === 12 &&
+            currentLocation.longitude === -86,
         [currentLocation.latitude, currentLocation.longitude, isWrapperVisible]
     );
 

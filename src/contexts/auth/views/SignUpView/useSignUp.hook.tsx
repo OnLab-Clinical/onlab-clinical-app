@@ -1,5 +1,5 @@
 // react
-import { useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 // props
@@ -26,7 +26,10 @@ import {
     userNameValidation,
     userPasswordValidation,
 } from '../../validations';
+// entities
+import { CountryFill } from '../../entities';
 // repositories
+import { countriesRepository } from '../../repositories';
 
 const signUpValidation = yup.object({
     // person
@@ -55,6 +58,9 @@ const signUpValidation = yup.object({
 
 export const useSignUp = () => {
     // states
+    const [countries, setCountries] = useState<CountryFill[]>([]);
+    const hasCountries = useMemo(() => countries.length > 0, [countries.length]);
+
     const form = useForm<SignUpFormData>({
         mode: 'all',
         resolver: yupResolver(signUpValidation),
@@ -71,20 +77,47 @@ export const useSignUp = () => {
     const { translate } = useLanguage();
 
     // actions
+    const handleGetCountries = useCallback(async () => {
+        showLoader();
+
+        const response = await countriesRepository();
+
+        if (!response.success) {
+            addNotification({
+                message: response.message,
+                kind: response.kind,
+            });
+
+            return hideLoader();
+        }
+
+        setCountries(response.data);
+
+        hideLoader();
+    }, [addNotification, hideLoader, showLoader]);
+
     const handleSignUp = form.handleSubmit(async data => {
         showLoader();
         console.log(data, translate('auth.sign-up.title'));
         hideLoader();
     });
 
+    // reactivity
+    useEffect(() => {
+        if (hasCountries) return;
+
+        handleGetCountries();
+    }, [handleGetCountries, hasCountries]);
+
     // context
     const context: SignUpContextProps = useMemo(
         () => ({
+            countries,
             form,
             stepper,
             handleSignUp,
         }),
-        [form, handleSignUp, stepper]
+        [form, handleSignUp, countries, stepper]
     );
 
     return { context };

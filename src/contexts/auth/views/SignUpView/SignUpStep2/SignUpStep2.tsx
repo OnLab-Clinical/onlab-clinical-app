@@ -39,7 +39,7 @@ const SignUpStep2 = memo(() => {
 
             <MapContainer
                 center={[currentLocation.latitude, currentLocation.longitude]}
-                zoom={13}
+                zoom={8}
                 className="rounded-sm h-48">
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

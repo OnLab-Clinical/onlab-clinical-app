@@ -5,6 +5,7 @@ export const es: Record<Translation, string> = {
     'app.title': 'OnLab-Clinical',
     'app.not-found': 'Página no encontrada 404',
     'app.start': 'Regresar al inicio',
+    'app.refresh': 'Nuevo contenido disponible, haga clic en el botón de recargar para actualizar',
     'theme.os': 'Sistema',
     'theme.light': 'Claro',
     'theme.dark': 'Oscuro',
@@ -14,10 +15,10 @@ export const es: Record<Translation, string> = {
     'actions.next': 'Siguiente',
     // authentication module
     // person
-    'auth.name.label': 'Nombre',
+    'auth.name.label': 'Nombre(s)',
     'auth.name.placeholder': 'Escriba su nombre',
     'auth.name.required': 'su nombre es requerido',
-    'auth.surname.label': 'Apellido',
+    'auth.surname.label': 'Apellido(s)',
     'auth.surname.placeholder': 'Escriba su apellido',
     'auth.surname.required': 'su apellido es requerido',
     'auth.sex.label': 'Sexo',
@@ -85,4 +86,5 @@ export const es: Record<Translation, string> = {
     'auth.sign-up.step-1': 'Datos personales',
     'auth.sign-up.step-2': 'Datos de contacto',
     'auth.sign-up.step-3': 'Datos de cuenta',
+    'auth.sign-up.success': 'Cuenta de paciente creada satisfactoriamente, por favor inicie sesión',
 };

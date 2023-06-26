@@ -5,7 +5,7 @@ import { useRegisterSW } from 'virtual:pwa-register/react';
 import { useNotification } from '../notification';
 import { useLanguage } from '../language';
 // components
-import { Icon } from '@/shared/components';
+import { Button, Icon } from '@/shared/components';
 // assets
 import { mdiCloseCircle, mdiRefreshCircle } from '@mdi/js';
 
@@ -53,14 +53,12 @@ const PWAProvider = memo(() => {
         <>
             {needRefresh && (
                 <div className="fixed bottom-0 left-0 m-4 bg-dark-600 p-2 text-light-300 rounded-sm flex flex-col gap-2">
-                    <p className="font-medium text-center">
-                        New content available, click on reload button to update.
-                    </p>
+                    <p className="font-medium text-center">{translate('app.refresh')}</p>
 
                     <div className="grid grid-cols-2 gap-2 ml-auto">
-                        <button
-                            className="flex flex-row gap-2 border-2 items-center px-2 border-light-300 rounded-sm transition-all hover:scale-105 active:scale-95"
+                        <Button
                             type="button"
+                            className="flex flex-row gap-2 justify-center items-center px-2"
                             onClick={closeNeedRefresh}
                             title={translate('actions.close')}>
                             <span className="text-xl">
@@ -68,11 +66,12 @@ const PWAProvider = memo(() => {
                             </span>
 
                             <span>{translate('actions.close')}</span>
-                        </button>
+                        </Button>
 
-                        <button
-                            className="flex flex-row gap-2 border-2 items-center px-2 border-warning-600 bg-warning-600 rounded-sm transition-all hover:scale-105 active:scale-95"
+                        <Button
                             type="button"
+                            styleStrategy="warning"
+                            className="flex flex-row gap-2 justify-center items-center px-2"
                             onClick={refreshPage}
                             title={translate('actions.reload')}>
                             <span className="text-xl">
@@ -80,7 +79,7 @@ const PWAProvider = memo(() => {
                             </span>
 
                             <span>{translate('actions.reload')}</span>
-                        </button>
+                        </Button>
                     </div>
                 </div>
             )}

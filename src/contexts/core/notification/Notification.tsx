@@ -33,7 +33,7 @@ const Notification = memo(({ ID, kind, message }: StandardNotification) => {
     return (
         <div
             className={classNames(
-                'flex flex-row gap-2 p-2 items-center w-96 max-w-full text-light-300 rounded-sm border-l-4',
+                'flex flex-row gap-2 p-2 items-center w-96 max-w-full text-light-300 font-medium rounded-sm border-l-4',
                 styles[kind ?? 'info']
             )}>
             <span className="text-5xl">

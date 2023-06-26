@@ -5,3 +5,8 @@ export interface User {
     name: string;
     state: UserState;
 }
+
+export interface UserRequest {
+    name: string;
+    password: string;
+}

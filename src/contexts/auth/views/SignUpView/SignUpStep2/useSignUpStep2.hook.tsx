@@ -52,8 +52,8 @@ export const useSignUpStep2 = () => {
     }, [errors.address, errors.addressCountry, errors.department, errors.municipality]);
 
     const currentLocation: MarkerPosition = {
-        latitude: watch('latitude', 12),
-        longitude: watch('longitude', -86),
+        latitude: watch('latitude'),
+        longitude: watch('longitude'),
     };
 
     const wrapperRef = useRef<HTMLDivElement>(null);

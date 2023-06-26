@@ -1,7 +1,7 @@
 // react
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 // props
 import { SignUpContextProps, SignUpFormData } from './SignUp.props';
 // hooks
@@ -12,6 +12,7 @@ import { useStepper } from '@/shared/hooks';
 // utils
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { format } from 'date-fns';
 import {
     addressCountryValidation,
     addressValidation,
@@ -32,7 +33,7 @@ import {
 // entities
 import { CountryFill } from '../../entities';
 // repositories
-import { countriesRepository } from '../../repositories';
+import { countriesRepository, signUpRepository } from '../../repositories';
 
 const signUpValidation = yup.object({
     // person
@@ -68,6 +69,10 @@ export const useSignUp = () => {
     const form = useForm<SignUpFormData>({
         mode: 'all',
         resolver: yupResolver(signUpValidation),
+        defaultValues: {
+            latitude: 12,
+            longitude: -86,
+        },
     });
 
     const stepper = useStepper({ maxStep: 3, defaultStep: 3 });
@@ -76,9 +81,9 @@ export const useSignUp = () => {
 
     const { addNotification } = useNotification();
 
-    const dispatch = useDispatch();
-
     const { translate } = useLanguage();
+
+    const navigate = useNavigate();
 
     // actions
     const handleGetCountries = useCallback(async () => {
@@ -102,7 +107,51 @@ export const useSignUp = () => {
 
     const handleSignUp = form.handleSubmit(async data => {
         showLoader();
-        console.log(data, translate('auth.sign-up.title'));
+
+        const response = await signUpRepository({
+            person: {
+                name: data.name,
+                surname: data.surname,
+                birth: format(data.birth, "yyyy-MM-dd'T00:00:00Z'"),
+                sex: data.sex,
+            },
+            nid: data.nid,
+            contacts: {
+                email: data.email,
+                phone: {
+                    country: data.country,
+                    phone: data.phone,
+                },
+                address: {
+                    municipality: data.municipality,
+                    address: data.address,
+                    latitude: data.latitude,
+                    longitude: data.longitude,
+                },
+            },
+            user: {
+                name: data.username,
+                password: data.password,
+            },
+        });
+
+        if (!response.success) {
+            addNotification({
+                message: response.message,
+                kind: response.kind,
+            });
+
+            return hideLoader();
+        }
+
+        addNotification({
+            message: translate('auth.sign-up.success'),
+            kind: response.kind,
+            timeout: 10 * 1000,
+        });
+
+        navigate('../sign-in', { replace: true });
+
         hideLoader();
     });
 

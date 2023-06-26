@@ -9,7 +9,10 @@ interface DomainSucess<T> extends Domain<true> {
     data: T;
 }
 
-export const domainSuccess = <T>(data: T, kind: NotificationKind = 'success'): DomainSucess<T> => ({
+export const domainSuccess = <T = undefined>(
+    data: T,
+    kind: NotificationKind = 'success'
+): DomainSucess<T> => ({
     success: true,
     kind,
     data,
@@ -25,4 +28,4 @@ export const domainError = (message: string, kind: NotificationKind = 'danger'):
     message,
 });
 
-export type DomainResponse<T> = DomainSucess<T> | DomainError;
+export type DomainResponse<T = undefined> = DomainSucess<T> | DomainError;

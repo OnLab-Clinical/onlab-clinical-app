@@ -15,7 +15,7 @@ export default defineConfig({
             // useCredentials: true,
             devOptions: {
                 enabled: true,
-                // navigateFallbackAllowlist: [/^index.html$/],
+                navigateFallbackAllowlist: [/^index.html$/],
             },
 
             includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
@@ -41,22 +41,26 @@ export default defineConfig({
             },
 
             workbox: {
-                // globPatterns: ['**/*.{js,css,html,ico,png,svg,ttf,txt,json}'],
+                globPatterns: ['**/*.{js,jsx,ts,tsx,css,html,ico,png,svg,ttf,txt,json}'],
                 // maximumFileSizeToCacheInBytes: 3 * 1000000,
                 // navigateFallbackDenylist: [/^\/backoffice/],
-                /* runtimeCaching: [
+                runtimeCaching: [
                     {
-                        urlPattern: ({ url }) => url.pathname.startsWith('/api'),
-                        handler: 'NetworkFirst',
+                        urlPattern: ({ url }) =>
+                            url.pathname.startsWith('/api/auth/v1/resources/countries'),
+                        handler: 'CacheFirst',
                         method: 'GET',
                         options: {
-                            cacheName: 'api-cache',
+                            cacheName: 'api-cache-countries',
                             cacheableResponse: {
                                 statuses: [0, 200],
                             },
+                            expiration: {
+                                maxAgeSeconds: 24 * 60 * 60, // 1 day
+                            },
                         },
                     },
-                ], */
+                ],
             },
         }),
     ],

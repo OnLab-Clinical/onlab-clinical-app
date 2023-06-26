@@ -14,7 +14,7 @@ import { Calendar } from 'react-calendar';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 // assets
-import { mdiClose } from '@mdi/js';
+import { mdiClose, mdiSkipBackward, mdiSkipForward, mdiSkipNext, mdiSkipPrevious } from '@mdi/js';
 
 const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     (
@@ -101,6 +101,10 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
                             showFixedNumberOfWeeks
                             showWeekNumbers
                             calendarType="US"
+                            prevLabel={<Icon path={mdiSkipPrevious} />}
+                            prev2Label={<Icon path={mdiSkipBackward} />}
+                            nextLabel={<Icon path={mdiSkipNext} />}
+                            next2Label={<Icon path={mdiSkipForward} />}
                             {...calendar}
                         />
                     </PanelLayout>

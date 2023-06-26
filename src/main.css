@@ -46,7 +46,7 @@
     @apply flex flex-row items-center;
 }
 .react-calendar__navigation__arrow {
-    @apply text-sm 6xs:text-base 5xs:text-xl;
+    @apply text-sm 6xs:text-base 5xs:text-xl p-0.5;
     @apply bg-secondary-500 text-light-300 px-4 rounded-sm font-bold;
     @apply transition-all hover:scale-[1.01] active:scale-[.99];
     @apply bg-opacity-80 hover:bg-opacity-100;

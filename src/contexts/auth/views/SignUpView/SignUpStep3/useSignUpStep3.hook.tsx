@@ -6,8 +6,9 @@ import { useSignUpContext } from '../SignUp.context';
 import { ButtonProps, Icon, InputFieldProps } from '@/shared/components';
 // hooks
 import { Translation, useLanguage } from '@/contexts/core/language';
+import { useActive } from '@/shared/hooks';
 // assets
-import { mdiAccountPlus, mdiArrowLeft } from '@mdi/js';
+import { mdiAccountPlus, mdiArrowLeft, mdiEye, mdiEyeOff } from '@mdi/js';
 
 export const useSignUpStep3 = () => {
     // states
@@ -16,6 +17,7 @@ export const useSignUpStep3 = () => {
         form: {
             register,
             formState: { errors, isValid, isSubmitted },
+            trigger,
         },
         stepper: [{ currentStep }, { prevStep }],
     } = useSignUpContext();
@@ -104,24 +106,47 @@ export const useSignUpStep3 = () => {
         [errors.username?.message, register, translate]
     );
 
+    const [isPasswordVisible, , , togglePasswordVisibility] = useActive(false);
     const passwordField: InputFieldProps = useMemo(
         () => ({
             inputId: 'step3-password',
             title: translate('auth.password.label'),
             input: (
                 <input
-                    type="password"
+                    type={isPasswordVisible ? 'text' : 'password'}
                     id="step3-password"
                     placeholder={translate('auth.password.placeholder')}
-                    {...register('password')}
+                    {...register('password', {
+                        onChange: () => trigger('confirmPassword'),
+                    })}
                 />
+            ),
+            after: (
+                <button
+                    type="button"
+                    className="hover:scale-105 active:scale-95"
+                    title={
+                        isPasswordVisible
+                            ? translate('auth.password.hide')
+                            : translate('auth.password.show')
+                    }
+                    onClick={togglePasswordVisibility}>
+                    <Icon className="text-xl" path={isPasswordVisible ? mdiEyeOff : mdiEye} />
+                </button>
             ),
             hint: translate(errors.password?.message as Translation),
             isHintReserved: true,
             hasError: !!errors.password?.message,
             styleStrategy: 'primary',
         }),
-        [errors.password?.message, register, translate]
+        [
+            errors.password?.message,
+            isPasswordVisible,
+            register,
+            togglePasswordVisibility,
+            translate,
+            trigger,
+        ]
     );
 
     const confirmPasswordField: InputFieldProps = useMemo(
@@ -130,18 +155,37 @@ export const useSignUpStep3 = () => {
             title: translate('auth.password.label-confirm'),
             input: (
                 <input
-                    type="password"
+                    type={isPasswordVisible ? 'text' : 'password'}
                     id="step3-confirmPassword"
                     placeholder={translate('auth.password.placeholder-confirm')}
                     {...register('confirmPassword')}
                 />
+            ),
+            after: (
+                <button
+                    type="button"
+                    className="hover:scale-105 active:scale-95"
+                    title={
+                        isPasswordVisible
+                            ? translate('auth.password.hide')
+                            : translate('auth.password.show')
+                    }
+                    onClick={togglePasswordVisibility}>
+                    <Icon className="text-xl" path={isPasswordVisible ? mdiEyeOff : mdiEye} />
+                </button>
             ),
             hint: translate(errors.confirmPassword?.message as Translation),
             isHintReserved: true,
             hasError: !!errors.confirmPassword?.message,
             styleStrategy: 'primary',
         }),
-        [errors.confirmPassword?.message, register, translate]
+        [
+            errors.confirmPassword?.message,
+            isPasswordVisible,
+            register,
+            togglePasswordVisibility,
+            translate,
+        ]
     );
 
     const step3FormFields: InputFieldProps[] = [

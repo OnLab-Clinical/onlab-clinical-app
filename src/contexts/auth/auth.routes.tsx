@@ -3,7 +3,7 @@ import { RouteObject } from 'react-router-dom';
 // layouts
 import { AuthLayout } from './layouts';
 // views
-import { SignInView, SignUpView } from './views';
+import { RecoveryView, SignInView, SignUpView } from './views';
 
 export const authRoutes: RouteObject = {
     path: '/auth',
@@ -16,6 +16,10 @@ export const authRoutes: RouteObject = {
         {
             path: 'sign-up',
             element: <SignUpView />,
+        },
+        {
+            path: 'recovery',
+            element: <RecoveryView />,
         },
     ],
 };

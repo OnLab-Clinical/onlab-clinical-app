@@ -50,7 +50,13 @@ export type Translation =
                 | 'special'
                 | 'between'}`
           // Sign in view
-          | `sign-in.${'title' | 'sign-in' | 'sign-up-hint' | 'sign-up-nav' | 'welcome'}`
+          | `sign-in.${
+                | 'title'
+                | 'sign-in'
+                | 'sign-up-hint'
+                | 'sign-up-nav'
+                | 'recovery-nav'
+                | 'welcome'}`
           // sign up view
           | `sign-up.${
                 | 'title'
@@ -59,4 +65,5 @@ export type Translation =
                 | 'step-2'
                 | 'step-3'
                 | 'sign-up'
-                | 'success'}`}`;
+                | 'success'}`
+          | `recovery.${'title' | 'sign-in-nav' | 'recovery' | 'success'}`}`;

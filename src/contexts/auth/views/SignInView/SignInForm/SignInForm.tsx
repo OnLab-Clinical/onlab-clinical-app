@@ -3,9 +3,10 @@ import { Fragment, memo } from 'react';
 import { Link } from 'react-router-dom';
 // hooks
 import { useSignInForm } from './useSignInForm.hook';
+// layouts
+import { PanelLayout } from '@/shared/layouts';
 // components
 import { Button, InputField } from '@/shared/components';
-import { PanelLayout } from '@/shared/layouts';
 
 const SignInForm = memo(() => {
     const { handleSignIn, signInFormFields, signInAction, translate } = useSignInForm();
@@ -28,6 +29,13 @@ const SignInForm = memo(() => {
                 </fieldset>
 
                 <Button {...signInAction} />
+
+                <Link
+                    to="../recovery"
+                    replace
+                    className="text-secondary-500 underline font-medium self-center">
+                    {translate('auth.sign-in.recovery-nav')}
+                </Link>
 
                 <span>
                     <span>{translate('auth.sign-in.sign-up-hint')} </span>

@@ -78,6 +78,7 @@ export const es: Record<Translation, string> = {
     'auth.sign-in.sign-in': 'Iniciar sesión',
     'auth.sign-in.sign-up-hint': 'Si aún no dispone de una cuenta, puedes crear una fácilmente',
     'auth.sign-in.sign-up-nav': 'aquí',
+    'auth.sign-in.recovery-nav': '¿Ha olvidado su contraseña?',
     'auth.sign-in.welcome': 'Bienvenido a OnLab-Clinical, área personal de paciente',
     // sign up view
     'auth.sign-up.title': 'Nuevo paciente',
@@ -87,4 +88,10 @@ export const es: Record<Translation, string> = {
     'auth.sign-up.step-2': 'Datos de contacto',
     'auth.sign-up.step-3': 'Datos de cuenta',
     'auth.sign-up.success': 'Cuenta de paciente creada satisfactoriamente, por favor inicie sesión',
+    // recovery view
+    'auth.recovery.title': 'Recuperar cuenta de paciente',
+    'auth.recovery.sign-in-nav': 'inicio de sesión',
+    'auth.recovery.recovery': 'Recuperar cuenta',
+    'auth.recovery.success':
+        'Se ha enviado un correo de recuperación de contraseña a su cuenta de correo electrónico, por favor revise su bandeja de entrada o spam',
 };

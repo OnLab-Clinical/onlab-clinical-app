@@ -17,10 +17,10 @@ const Notification = memo(({ ID, kind, message }: StandardNotification) => {
     const { translate } = useLanguage();
 
     const styles: Record<NotificationKind, string> = {
-        info: 'bg-info-500 border-l-info-700',
-        success: 'bg-success-500 border-l-success-700',
+        info: 'bg-info-600 border-l-info-800',
+        success: 'bg-success-600 border-l-success-800',
         warning: 'bg-warning-600 border-l-warning-800',
-        danger: 'bg-danger-500 border-l-danger-700',
+        danger: 'bg-danger-600 border-l-danger-800',
     };
 
     const icon: Record<NotificationKind, string> = {

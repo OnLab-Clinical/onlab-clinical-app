@@ -75,7 +75,7 @@ export const useSignUp = () => {
         },
     });
 
-    const stepper = useStepper({ maxStep: 3, defaultStep: 3 });
+    const stepper = useStepper({ maxStep: 3 });
 
     const { showLoader, hideLoader } = useLoader();
 

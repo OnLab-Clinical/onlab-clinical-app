@@ -68,7 +68,9 @@ export const useSignUpStep1 = () => {
         if (state) {
             nextStep();
 
-            setFocus('email');
+            await new Promise(resolver => setTimeout(() => resolver(undefined), 0));
+
+            setFocus('addressCountry');
 
             return;
         }

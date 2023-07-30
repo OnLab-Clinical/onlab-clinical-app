@@ -14,7 +14,7 @@ export default defineConfig({
             registerType: 'prompt',
             // useCredentials: true,
             devOptions: {
-                enabled: true,
+                enabled: false,
                 navigateFallbackAllowlist: [/^index.html$/],
             },
 

@@ -1,0 +1,19 @@
+{
+    "name": "OnLab-Clinical App",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "features": {},
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "mhutchie.git-graph",
+                "eamodio.gitlens",
+                "redhat.vscode-yaml",
+                "esbenp.prettier-vscode"
+            ]
+        }
+    },
+    "mounts": ["source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,readonly,type=bind"],
+    "postCreateCommand": "git config --global --add safe.directory /workspaces/onlab-clinical-app && git config --global core.autocrlf input"
+}

@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    volumes:
+      - ../..:/workspaces:cached
+    env_file:
+      - .env.app
+    command: sleep infinity
